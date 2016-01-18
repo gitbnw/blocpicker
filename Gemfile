@@ -8,10 +8,12 @@ gem 'rails', '4.2.4'
    gem 'pg'
    gem 'rails_12factor'
  end
- 
+
  group :development, :test do
    gem 'rspec-rails', '~> 3.0'
- end 
+   gem 'factory_girl_rails', '~> 4.0'
+   gem 'faker'
+ end
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
