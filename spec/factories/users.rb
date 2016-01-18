@@ -10,8 +10,7 @@ FactoryGirl.define do
     password_confirmation pw
   end
 
-  factory :confirmed_user, :parent => :user do
-    after(:create) { |user| user.confirm }
+  factory :confirmed_user, parent: :user do
+    after(:create, &:confirm)
   end
-
 end

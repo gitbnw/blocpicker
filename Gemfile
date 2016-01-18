@@ -1,24 +1,23 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 
- group :production do
-   gem 'pg'
-   gem 'rails_12factor'
- end
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 
- group :development, :test do
-   gem 'rspec-rails', '~> 3.0'
-   gem 'factory_girl_rails', '~> 4.0'
-   gem 'faker'
- end
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'faker'
+end
 
- group :test do
-   gem 'shoulda-matchers', '~> 3.0'
- end
- 
+group :test do
+  gem 'shoulda-matchers', '~> 3.0'
+end
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -48,9 +47,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-
 gem 'devise', '~> 3.5'
 
 gem 'bootstrap-sass', '~> 3.3'
 
-# gem 'omniauth-github', :github => 'intridea/omniauth-github'
+gem 'omniauth'
+gem 'omniauth-github', :github => 'intridea/omniauth-github'
