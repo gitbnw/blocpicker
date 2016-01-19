@@ -49,6 +49,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'devise', '~> 3.5'
 
+gem 'figaro'
+ 
 gem 'bootstrap-sass', '~> 3.3'
 
 gem 'omniauth'

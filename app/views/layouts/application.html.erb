@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>Workspace</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-      <%= csrf_meta_tags %>
+  <title>Blocpicker</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <%= stylesheet_link_tag    "application", media: "all" %>
+   <%= javascript_include_tag "application" %>
+   <%= csrf_meta_tags %>
 </head>
-
 <body>
+   <div class="container">
+        <div class="navbar" role="navigation">
+        <ul class="nav navbar-nav">
+          <% if user_signed_in? %>
+          <li><%= link_to current_user.name, current_user, :class => 'navbar-brand' %>
+            <%= image_tag current_user.avatar_url(36), class: "gravatar" %>         
+          </li>
+          <li><%= link_to "New Item", new_user_item_path(user_id: current_user.id), :class => 'navbar-link' %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => 'navbar-link' %></li>
+          <% else %>
+          <li><%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link'  %></li>
+          <li><%= link_to "Sign in", new_user_session_path, :class => 'navbar-link' %></li>
+          <% end %>
+        </ul> 
+        </div>
   <%= flash_messages %>
     <%= yield %>
 
