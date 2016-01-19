@@ -22,7 +22,11 @@
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <li role="presentation"><%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %></li>
+
+    <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-default" do %>
+
+      <% content_tag(:i, nil, class: "fa fa-2x #{omniauth_icon_for(provider)}") %>
+    <% end %>
   <% end -%>
 <% end -%>
 </ul>

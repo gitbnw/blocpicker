@@ -17,4 +17,10 @@ module ApplicationHelper
     end
     nil
   end
+  
+  def omniauth_icon_for provider
+    { github: "fa-github" } [provider.to_sym] || provider.to_s
+  end
+  
+  
 end
