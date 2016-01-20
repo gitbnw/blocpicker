@@ -11,12 +11,19 @@
    <div class="container">
         <div class="navbar" role="navigation">
         <ul class="nav navbar-nav">
-          <%= render "devise/shared/links" %>
+          
           <% if user_signed_in? %>
-
-          <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => 'navbar-link' %></li>
+          <li><%= link_to current_user.name, current_user, :class => 'navbar-brand' %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => "btn btn-default" %></li>
           <% else %>
-
+            <%= link_to "Sign up", new_registration_path(:user), class: "btn btn-default" %>
+              <%- resource_class.omniauth_providers.each do |provider| %>
+            
+                <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-default" do %>
+            
+                  <% content_tag(:i, nil, class: "fa fa-2x #{omniauth_icon_for(provider)}") %>
+                <% end %>
+              <% end -%>            
           <% end %>
         </ul> 
         </div>
