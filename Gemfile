@@ -56,4 +56,7 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'font-awesome-sass'
 
 gem 'omniauth'
+
 gem 'omniauth-github', :github => 'intridea/omniauth-github'
+
+gem "omniauth-google-oauth2"

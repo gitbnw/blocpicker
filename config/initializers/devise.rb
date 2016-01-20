@@ -266,4 +266,9 @@ Devise.setup do |config|
   #Add your ID and secret here
   #ID first, secret second
   config.omniauth :github, ENV["OMNIAUTH_GITHUB_ID"], ENV["OMNIAUTH_GITHUB_PASSWORD"]
+  config.omniauth :google_oauth2, ENV["GOOGLE_OAUTH_CLIENT_ID"], ENV["GOOGLE_OAUTH_SECRET"], {
+    scope: "email",
+    access_type: "offline", 
+    approval_prompt: ""
+  }
 end
