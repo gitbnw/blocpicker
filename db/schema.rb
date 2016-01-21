@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119224136) do
+ActiveRecord::Schema.define(version: 20160121163726) do
 
   create_table "portfolios", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "stock_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
   add_index "portfolios", ["stock_id"], name: "index_portfolios_on_stock_id"

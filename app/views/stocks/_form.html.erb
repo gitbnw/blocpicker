@@ -1,0 +1,8 @@
+  <div class="form-group">
+    <%= f.label :stock %>
+    <%= f.text_field :stock,
+                     class: 'form-control',
+                     placeholder: "Enter stock symbol",
+                     value: "" %>
+    <%= link_to "Add", new_portfolio_stock_path(@portfolio), class: 'btn btn-success' %>                 
+  </div>

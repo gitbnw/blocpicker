@@ -7,7 +7,7 @@ RSpec.describe Portfolio, type: :model do
   let(:portfolio) { Portfolio.create!(user: user, stock: stock) }
 
   it { should belong_to(:user) }
-  it { should belong_to(:stock) }
+  it { should has_many(:stock) }
 
   describe 'attributes' do
     it 'should respond to user' do
