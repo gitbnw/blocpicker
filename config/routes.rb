@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show]
   
+  resources :portfolios do
+    resources :stocks, except: [:index]
+  end
+  
   root 'home#index'
   
 end
