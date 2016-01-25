@@ -6,7 +6,7 @@ class CreateStocks < ActiveRecord::Migration
       t.decimal :price
       t.decimal :change
       t.decimal :volume
-
+      t.references :portfolio, index: true, foreign_key: true
       t.timestamps null: false
     end
   end
