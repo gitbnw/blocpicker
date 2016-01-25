@@ -1,8 +1,10 @@
   <div class="form-group">
-    <%= f.label :stock %>
-    <%= f.text_field :stock,
+    <%= form_for [portfolio, stock], remote: true do |f| %>
+    <%= f.label :symbol %>
+    <%= f.text_field :symbol,
                      class: 'form-control',
                      placeholder: "Enter stock symbol",
                      value: "" %>
-    <%= link_to "Add", new_portfolio_stock_path(@portfolio), class: 'btn btn-success' %>                 
+    <%= f.submit "Submit Stock", class: 'btn btn-default pull-right' %>     
+    <% end %>
   </div>

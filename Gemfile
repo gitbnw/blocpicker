@@ -60,3 +60,5 @@ gem 'omniauth'
 gem 'omniauth-github', :github => 'intridea/omniauth-github'
 
 gem "omniauth-google-oauth2"
+
+gem 'httparty'
