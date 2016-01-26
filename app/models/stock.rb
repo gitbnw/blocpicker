@@ -1,5 +1,6 @@
+require 'httparty'
+
 class Stock < ActiveRecord::Base
-    include HTTParty
     
     belongs_to :portfolio
     before_save :lookup_quote
@@ -8,10 +9,7 @@ class Stock < ActiveRecord::Base
     validates :price, presence: true
     
     default_scope { order('updated_at DESC') }
-    
-   base_uri "query.yahooapis.com/v1/public/yql"
-   
-  
+
     private
     
    def lookup_quote

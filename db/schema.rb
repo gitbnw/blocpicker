@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121163726) do
+ActiveRecord::Schema.define(version: 20160126224221) do
 
   create_table "portfolios", force: :cascade do |t|
     t.integer  "user_id"
@@ -29,8 +29,18 @@ ActiveRecord::Schema.define(version: 20160121163726) do
     t.decimal  "change"
     t.decimal  "volume"
     t.integer  "portfolio_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "averagedailyvolume"
+    t.decimal  "dayslow"
+    t.decimal  "dayshigh"
+    t.decimal  "yearlow"
+    t.decimal  "yearhigh"
+    t.string   "marketcapitalization"
+    t.decimal  "lasttradepriceonly"
+    t.string   "daysrange"
+    t.string   "stockexchange"
+    t.string   "string"
   end
 
   add_index "stocks", ["portfolio_id"], name: "index_stocks_on_portfolio_id"
