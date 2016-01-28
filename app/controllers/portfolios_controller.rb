@@ -28,4 +28,17 @@ class PortfoliosController < ApplicationController
     @portfolio = Portfolio.find(params[:id])
   end
 
+   def destroy
+     @portfolio = Portfolio.find(params[:id])
+
+     if @portfolio.destroy
+       flash[:notice] = "\"#{@portfolio.name}\" was deleted successfully."
+       redirect_to action: :index
+     else
+       flash[:error] = "There was an error deleting the portfolio."
+       render :show
+     end
+   end
+
+
 end

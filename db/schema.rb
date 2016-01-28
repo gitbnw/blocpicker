@@ -15,20 +15,20 @@ ActiveRecord::Schema.define(version: 20160126224221) do
 
   create_table "portfolios", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "stock_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "name"
   end
 
   add_index "portfolios", ["user_id"], name: "index_portfolios_on_user_id"
+  add_index "portfolios", ["stock_id"], name: "index_portfolios_on_stock_id"
 
   create_table "stocks", force: :cascade do |t|
     t.string   "symbol"
     t.string   "name"
-    t.decimal  "price"
     t.decimal  "change"
     t.decimal  "volume"
-    t.integer  "portfolio_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "averagedailyvolume"
@@ -40,10 +40,7 @@ ActiveRecord::Schema.define(version: 20160126224221) do
     t.decimal  "lasttradepriceonly"
     t.string   "daysrange"
     t.string   "stockexchange"
-    t.string   "string"
   end
-
-  add_index "stocks", ["portfolio_id"], name: "index_stocks_on_portfolio_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: ""

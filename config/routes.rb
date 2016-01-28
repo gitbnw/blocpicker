@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   
   resources :portfolios do
-    resources :stocks, except: [:index]
+    resources :stocks
   end
   
   root 'home#index'

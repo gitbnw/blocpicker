@@ -1,24 +1,27 @@
-require 'httparty'
-
 class Stock < ActiveRecord::Base
+  
+include StocksHelper
     
-    belongs_to :portfolio
-    before_save :lookup_quote
-    
-    validates :symbol, length: { maximum: 4 }, presence: true
-    validates :price, presence: true
+    before_save :request_remote
+
     
     default_scope { order('updated_at DESC') }
-
+    
     private
     
-   def lookup_quote
-     base_query = "select * from yahoo.finance.quote where symbol in"
-     puts "hello"
-    # query = url_encode(yql_query) 
-     
-    # response = get("?q=" << query << "(#{symbol})" )
-     
-   end
-   
+    def self.update_or_create(attributes)
+      assign_or_new(attributes)
+    end
+    
+    def self.assign_or_new(attributes)
+      
+      obj = first || new
+      obj.assign_attributes(attributes)
+      obj
+      
+    end
+    
+    def request_remote
+      RemoteStock.find(self.symbol)
+    end
 end

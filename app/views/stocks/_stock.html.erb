@@ -1,5 +1,7 @@
- <div class="media">
-   <div class="media-body">
-     <p><%= stock.symbol %></p>
-   </div>
- </div>
+ <%= content_tag :div, class: 'media', id: "stock-#{stock.id}" do %>
+  <div class="media">
+    <div class="media-body">
+      <p><%= stock.symbol %>: <%= stock.lasttradepriceonly %></p>
+    </div>
+  </div>
+ <% end %>
