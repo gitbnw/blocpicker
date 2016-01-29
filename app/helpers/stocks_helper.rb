@@ -1,4 +1,8 @@
 module StocksHelper
+  
+    def self.request_remote(param)
+      RemoteStock.find(param[:symbol])
+    end
     
     class RemoteStock
       include HTTParty
@@ -34,12 +38,13 @@ module StocksHelper
         response = get("?q=" << query)
 
         if response.success?
-    
+            
             decoded = JSON.parse response.body
 
             quote = decoded["query"]["results"]["quote"]
             # need handling for if stock symbol does not resolve
-            Stock.where(symbol: stock_symbol).update_or_create(
+            stock = Stock.find_by(symbol: stock_symbol)
+            stock.assign_attributes(
                         averagedailyvolume: quote["AverageDailyVolume"], 
                         change: quote["Change"],
                         dayslow: quote["DaysLow"],            
@@ -53,12 +58,17 @@ module StocksHelper
                         symbol: quote["Symbol"],
                         volume: quote["Volume"],
                         stockexchange: quote["StockExchange"]
-                        )           
+                        ) 
+              puts "hellooooo"
+              stock
+
         else
           # this just raises the net/http response that was raised
           raise response.response
         end
+        
       end
+      
       
     end
 
