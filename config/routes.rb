@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show]
   
+  resources :picks, only: [:show]
+  
   resources :portfolios do
     resources :stocks
   end

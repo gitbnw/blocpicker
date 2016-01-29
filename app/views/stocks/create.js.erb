@@ -1,8 +1,13 @@
  <% if @stock.valid? %>
 
    $('.js-stocks').prepend("<%= escape_javascript(render(@stock)) %>");
-   $('.new-stock').html("<%= escape_javascript(render partial: 'stocks/form', locals: { portfolio: @portfolio, stock: @stock }) %>");
+
+   $('.new-stock').html("<%= escape_javascript(render partial: 'stocks/form', locals: { portfolio: @portfolio, stock: Stock.new }) %>");
  <% else %>
    $('.flash').prepend("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash.now[:alert] %></div>");
    $('.new-stock').html("<%= escape_javascript(render partial: 'stocks/form', locals: { portfolio: @portfolio, stock: @stock }) %>");
  <% end %>
+ 
+  <% if @portfolio.picked_stocks.exists? %>
+     $('.empty_head').remove()
+  <% end %>

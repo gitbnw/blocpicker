@@ -1,9 +1,9 @@
 class Stock < ActiveRecord::Base
   
-include StocksHelper
+    include StocksHelper
     
-    before_save :request_remote
-
+    # has_many :picks
+    has_many :portfolios, through: :picks
     
     default_scope { order('updated_at DESC') }
     
@@ -18,10 +18,9 @@ include StocksHelper
       obj = first || new
       obj.assign_attributes(attributes)
       obj
-      
     end
     
-    def request_remote
-      RemoteStock.find(self.symbol)
+    def self.request_remote(param)
+      RemoteStock.find(param[:symbol])
     end
 end

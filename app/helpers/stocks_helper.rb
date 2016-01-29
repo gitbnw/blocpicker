@@ -27,7 +27,7 @@ module StocksHelper
     
       
       def self.find(stock_symbol)
-        puts stock_symbol
+
         base_query = "select * from yahoo.finance.quote where symbol = '#{stock_symbol}'" 
         query = URI.encode(base_query) << "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="
 

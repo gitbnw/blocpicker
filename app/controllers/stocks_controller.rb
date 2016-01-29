@@ -6,7 +6,7 @@ include StocksHelper
   def create
 
      @portfolio = Portfolio.find(params[:portfolio_id])
-     @stock = @portfolio.stocks.find_or_create_by(stock_params)
+     @stock = @portfolio.picked_stocks.request_remote(stock_params)
  
      if @stock.save
        flash[:notice] = "Stock saved successfully."
@@ -27,7 +27,7 @@ include StocksHelper
   def update
       
      @portfolio = Portfolio.find(params[:portfolio_id])
-     @stock = @portfolio.stocks.find_or_create_by(stock_params)
+     @stock = @portfolio.picked_stocks.request_remote(stock_params)
  
      if @stock.save
        flash[:notice] = "Stock saved successfully."
