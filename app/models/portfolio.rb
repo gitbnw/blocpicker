@@ -1,5 +1,6 @@
 class Portfolio < ActiveRecord::Base
   belongs_to :user
   has_many :picks
-  has_many :picked_stocks, through: :picks, source: :stock
+  has_many :stocks, through: :picks #, source: :stock
+  # accepts_nested_attributes_for :stocks
 end

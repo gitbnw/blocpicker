@@ -35,8 +35,10 @@ ActiveRecord::Schema.define(version: 20160128190339) do
   create_table "stocks", force: :cascade do |t|
     t.string   "symbol"
     t.string   "name"
+    t.decimal  "price"
     t.decimal  "change"
     t.decimal  "volume"
+    t.integer  "portfolio_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "averagedailyvolume"
@@ -49,6 +51,8 @@ ActiveRecord::Schema.define(version: 20160128190339) do
     t.string   "daysrange"
     t.string   "stockexchange"
   end
+
+  add_index "stocks", ["portfolio_id"], name: "index_stocks_on_portfolio_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: ""
