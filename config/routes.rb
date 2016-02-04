@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :picks, only: [:show]
   
   resources :portfolios do
-    resources :stocks
+    resources :stocks, only: [:create, :show]
   end
   
   root 'home#index'

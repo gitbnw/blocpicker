@@ -1,11 +1,16 @@
-  <div class="form-group">
-
-    <%= form_for [portfolio, stock], remote: true do |f| %>
-    <%= f.label :symbol %>
+<div>
+  <%= form_for [portfolio, stock], remote: true do |f| %>
+    <div class="form-inline">
+    <div class="form-group">      
     <%= f.text_field :symbol,
-                     class: 'form-control',
-                     placeholder: "Enter stock symbol",
+                     class: 'form-control inline',
+                     placeholder: "Symbol",
                      value: "" %>
-    <%= f.submit "Submit Stock", class: 'btn btn-default pull-right' %>     
+  <%= button_tag( :class => "btn btn-default inline") do %>
+    <span class="glyphicon-plus text-success"></span>
+  <% end %>
+  
     <% end %>
+</div>
+  </div>
   </div>

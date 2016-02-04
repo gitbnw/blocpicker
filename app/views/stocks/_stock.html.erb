@@ -1,7 +1,18 @@
- <%= content_tag :div, class: 'media', id: "stock-#{stock.id}" do %>
-  <div class="media">
+ <% if stock.updated_at > Time.now-10.seconds %>
+ <%= content_tag :div, class: 'media transition-bg-color text-success bg-success', id: "stock-#{stock.id}" do %>
+   <div class="media">
     <div class="media-body">
-      <p><%= stock.symbol %>: <%= stock.lasttradepriceonly %></p>
+      <div class="stock"><%= stock.symbol %>: <%= stock.lasttradepriceonly %></div>
     </div>
   </div>
  <% end %>
+ <% else %>
+ <%= content_tag :div, class: 'media', id: "stock-#{stock.id}" do %>
+   <div class="media">
+    <div class="media-body">
+      <div class="stock"><%= stock.symbol %>: <%= stock.lasttradepriceonly %></div>
+    </div>
+  </div>
+ <% end %>
+ <% end %>
+

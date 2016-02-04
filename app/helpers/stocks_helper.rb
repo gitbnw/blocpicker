@@ -1,9 +1,6 @@
 module StocksHelper
   
-    def self.request_remote(param)
-      RemoteStock.find(param[:symbol])
-    end
-    
+
     class RemoteStock
       include HTTParty
       require 'uri'
@@ -33,7 +30,7 @@ module StocksHelper
       def self.find(stock_symbol)
 
         base_query = "select * from yahoo.finance.quote where symbol = '#{stock_symbol}'" 
-        query = URI.encode(base_query) << "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="
+        query = URI.encode(base_query) << "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
 
         response = get("?q=" << query)
 
@@ -42,29 +39,10 @@ module StocksHelper
             decoded = JSON.parse response.body
 
             quote = decoded["query"]["results"]["quote"]
-            # need handling for if stock symbol does not resolve
-            stock = Stock.find_by(symbol: stock_symbol)
-            stock.assign_attributes(
-                        averagedailyvolume: quote["AverageDailyVolume"], 
-                        change: quote["Change"],
-                        dayslow: quote["DaysLow"],            
-                        dayshigh: quote["DaysHigh"],            
-                        yearlow: quote["YearLow"],            
-                        yearhigh: quote["YearHigh"],            
-                        marketcapitalization: quote["MarketCapitalization"],            
-                        lasttradepriceonly: quote["LastTradePriceOnly"],
-                        daysrange: quote["DaysRange"],
-                        name: quote["Name"],
-                        symbol: quote["Symbol"],
-                        volume: quote["Volume"],
-                        stockexchange: quote["StockExchange"]
-                        ) 
-              puts "hellooooo"
-              stock
-
-        else
+            return quote
+         else
           # this just raises the net/http response that was raised
-          raise response.response
+          puts response
         end
         
       end

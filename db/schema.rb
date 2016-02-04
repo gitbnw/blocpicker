@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20160128190339) do
     t.integer "stock_id"
   end
 
-  add_index "portfolios_stocks", ["portfolio_id", "stock_id"], name: "index_portfolios_stocks_on_portfolio_id_and_stock_id", unique: true
   add_index "portfolios_stocks", ["portfolio_id"], name: "index_portfolios_stocks_on_portfolio_id"
   add_index "portfolios_stocks", ["stock_id"], name: "index_portfolios_stocks_on_stock_id"
 
