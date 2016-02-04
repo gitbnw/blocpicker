@@ -12,7 +12,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'noreply@morning-meadow-8609.herokuapp.com'
+  config.mailer_sender = 'noreply@blocpicker-gitbnw.c9users.io'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -262,4 +262,15 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+  
+  #Add your ID and secret here
+  #ID first, secret second
+  config.omniauth :github, ENV["OMNIAUTH_GITHUB_ID"], ENV["OMNIAUTH_GITHUB_PASSWORD"]
+  
+
+  config.omniauth :google_oauth2, ENV["GOOGLE_OAUTH_CLIENT_ID"], ENV["GOOGLE_OAUTH_SECRET"], {
+    scope: "email",
+    access_type: "offline", 
+    approval_prompt: ""
+  }
 end

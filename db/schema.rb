@@ -11,26 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160117233943) do
+ActiveRecord::Schema.define(version: 20160128190339) do
 
   create_table "portfolios", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "stock_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
   add_index "portfolios", ["stock_id"], name: "index_portfolios_on_stock_id"
   add_index "portfolios", ["user_id"], name: "index_portfolios_on_user_id"
 
+  create_table "portfolios_stocks", force: :cascade do |t|
+    t.integer "portfolio_id"
+    t.integer "stock_id"
+  end
+
+  add_index "portfolios_stocks", ["portfolio_id"], name: "index_portfolios_stocks_on_portfolio_id"
+  add_index "portfolios_stocks", ["stock_id"], name: "index_portfolios_stocks_on_stock_id"
+
   create_table "stocks", force: :cascade do |t|
     t.string   "symbol"
     t.string   "name"
-    t.decimal  "price"
     t.decimal  "change"
     t.decimal  "volume"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "averagedailyvolume"
+    t.decimal  "dayslow"
+    t.decimal  "dayshigh"
+    t.decimal  "yearlow"
+    t.decimal  "yearhigh"
+    t.string   "marketcapitalization"
+    t.decimal  "lasttradepriceonly"
+    t.string   "daysrange"
+    t.string   "stockexchange"
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,6 +68,8 @@ ActiveRecord::Schema.define(version: 20160117233943) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "name"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

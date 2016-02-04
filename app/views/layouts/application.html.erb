@@ -11,19 +11,42 @@
    <div class="container">
         <div class="navbar" role="navigation">
         <ul class="nav navbar-nav">
+
           <% if user_signed_in? %>
-          <li><%= link_to current_user.name, current_user, :class => 'navbar-brand' %>
-            <%= image_tag current_user.avatar_url(36), class: "gravatar" %>         
-          </li>
-          <li><%= link_to "New Item", new_user_item_path(user_id: current_user.id), :class => 'navbar-link' %></li>
-          <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => 'navbar-link' %></li>
+
+          <li><%= link_to current_user.name, current_user, :class => 'navbar-brand' %></li>
+
+          <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => "btn btn-default" %></li>
           <% else %>
-          <li><%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link'  %></li>
-          <li><%= link_to "Sign in", new_user_session_path, :class => 'navbar-link' %></li>
+            <%= link_to "Sign up", new_registration_path(:user), class: "btn btn-default" %>
+              <%- resource_class.omniauth_providers.each do |provider| %>
+
+                <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-default" do %>
+
+                  <% content_tag(:i, nil, class: "fa fa-2x #{omniauth_icon_for(provider)}") %>
+                <% end %>
+              <% end -%>
           <% end %>
-        </ul> 
+        </ul>
         </div>
-  <%= flash_messages %>
+     <div class="flash">   
+     <% if flash[:notice] %>
+       <div class="alert alert-success">
+         <button type="button" class="close" data-dismiss="alert">&times;</button>
+         <%= flash[:notice] %>
+       </div>
+     <% elsif flash.now[:alert] %>
+       <div class="alert alert-danger">
+         <button type="button" class="close" data-dismiss="alert">&times;</button>
+         <%= flash.now[:alert] %>
+       </div>
+     <% elsif flash[:alert] %>
+       <div class="alert alert-warning">
+         <button type="button" class="close" data-dismiss="alert">&times;</button>
+         <%= flash[:alert] %>
+       </div>
+     <% end %>
+     </div>
     <%= yield %>
 
 </body>

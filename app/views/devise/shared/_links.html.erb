@@ -1,15 +1,10 @@
-<div class = "devise_links">
-<ul class="nav nav-pills nav-stacked">
+
 <%- if controller_name != 'sessions' %>
-  <li role="presentation"><%= link_to "Log in", new_session_path(resource_name) %></li>
+  <%= link_to "Log in", new_session_path(resource_name), class: "btn btn-default" %>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <li role="presentation"><%= link_to "Sign up", new_registration_path(resource_name) %></li>
-<% end -%>
-
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <li role="presentation"><%= link_to "Forgot your password?", new_password_path(resource_name) %></li>
+  <%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-default" %>
 <% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
@@ -22,8 +17,10 @@
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <li role="presentation"><%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %></li>
+
+    <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-default" do %>
+
+      <% content_tag(:i, nil, class: "fa fa-2x #{omniauth_icon_for(provider)}") %>
+    <% end %>
   <% end -%>
 <% end -%>
-</ul>
-</div>
