@@ -4,10 +4,12 @@ class Stock < ActiveRecord::Base
 
     #has_many :picks
     has_and_belongs_to_many :portfolios, -> { uniq } #, through: :picks
-    validates :symbol, uniqueness: true
+    has_many :portfolios_stocks
+    validates :symbol, uniqueness: true  
 
     default_scope { order('symbol ASC') }
-
+    scope :freshest, -> { order(updated_at: :asc)}
+    scope :oldest, -> { order(updated_at: :desc)}
     
     def self.quote_update(stock)
       quote = RemoteStock.find(stock[:symbol])
