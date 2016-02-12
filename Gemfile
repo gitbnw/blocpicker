@@ -65,3 +65,6 @@ gem "omniauth-google-oauth2"
 gem 'httparty'
 
 gem 'whenever', :require => false
+
+gem 'gon'
+gem 'rabl-rails'

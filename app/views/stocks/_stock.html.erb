@@ -1,10 +1,11 @@
  <% @portfolio_stock = PortfoliosStocks.where(stock: stock).first %>
  <% if @portfolio_stock.updated_at > Time.now-3.seconds %>
- <!--need to change this to reference when associated was created-->
+
  
  <%= content_tag :div, class: 'media transition-bg-color text-success bg-success', id: "stock-#{stock.id}" do %>
    <div class="media">
     <div class="media-body">
+
       <div class="stock"><%= stock.symbol %>: <%= stock.lasttradepriceonly %></div>
     </div>
   </div>

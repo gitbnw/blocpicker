@@ -1,16 +1,13 @@
  <% if @stock.valid? && @portfolio_stock == false %>
 
-
-$list = $("<%= j render(@portfolio.stocks) %>");
-
-
-$(".js-stocks").hide().html($list).fadeIn("slow", function() {
-   $('#stock-<%= @stock.id %>').removeClass( "bg-success text-success" ).addClass( "white-bg" );
-})
-
-
- 
-   $('.new-stock').html("<%= escape_javascript(render partial: 'stocks/form', locals: { portfolio: @portfolio, stock: Stock.new }) %>");
+    $list = $("<%= j render(@portfolio.stocks) %>");
+    
+    
+    $(".js-stocks").hide().html($list).fadeIn("slow", function() {
+       $('#stock-<%= @stock.id %>').removeClass( "bg-success text-success" ).addClass( "white-bg" );
+    })
+    
+    $('.new-stock').html("<%= escape_javascript(render partial: 'stocks/form', locals: { portfolio: @portfolio, stock: Stock.new }) %>");
    
  <% else %>
 
@@ -20,4 +17,6 @@ $(".js-stocks").hide().html($list).fadeIn("slow", function() {
 
   <% unless @portfolio.stocks.empty? %>
      $('.empty_head').remove()
+     <!--init check refresh-->
+
   <% end %>

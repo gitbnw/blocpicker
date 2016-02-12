@@ -1,7 +1,7 @@
 module StocksHelper
   
 
-    class RemoteStock
+    class RemoteUpdate
       include HTTParty
       require 'uri'
       require 'json'
@@ -29,7 +29,7 @@ module StocksHelper
       
       def self.find(stock_symbol)
 
-        base_query = "select * from yahoo.finance.quote where symbol = '#{stock_symbol}'" 
+        base_query = "select * from yahoo.finance.quote where symbol in ( '#{stock_symbol}' )" 
         query = URI.encode(base_query) << "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
 
         response = get("?q=" << query)
@@ -39,7 +39,8 @@ module StocksHelper
             decoded = JSON.parse response.body
 
             quote = decoded["query"]["results"]["quote"]
-            return quote
+            #Array.wrap to handle if single hash or multiple in array
+            return Array.wrap(quote)
          else
           # this just raises the net/http response that was raised
           puts response
