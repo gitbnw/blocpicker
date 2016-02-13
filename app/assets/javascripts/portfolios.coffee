@@ -36,8 +36,9 @@ myStopFunction = ->
   clearInterval checkRefresh
   return
 
-init_refresh = (count) ->
-  if count > 0
+@init_refresh = (myCount) ->
+  console.log myCount
+  if myCount > 0
     console.log 'portfolio has stocks, refresh'
     $ checkRefresh
   else
@@ -46,4 +47,4 @@ init_refresh = (count) ->
 
 @init_count = ->
   console.log 'portfolio show page open, get count'
-  gon.watch 'count', init_refresh
+  gon.watch 'myCount', @init_refresh

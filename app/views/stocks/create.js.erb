@@ -1,3 +1,8 @@
+
+    init_count();
+
+
+
  <% if @stock.valid? && @portfolio_stock == false %>
 
     $list = $("<%= j render(@portfolio.stocks) %>");
@@ -20,3 +25,4 @@
      <!--init check refresh-->
 
   <% end %>
+  
