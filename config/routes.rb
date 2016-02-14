@@ -8,16 +8,12 @@ Rails.application.routes.draw do
 
   resources :picks, only: [:show]
 
+  post '/portfolios/refresh', to: 'portfolios#refresh'
+
   resources :portfolios do
     resources :stocks, only: [:create, :show]
   end
 
   root 'home#index'
-
-  namespace :api do
-    namespace :v1 do
-        post '/stocks/refresh', to: 'stocks#refresh'
-    end
-  end
 
 end

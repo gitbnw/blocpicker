@@ -1,6 +1,7 @@
 <%= include_gon(:init => true) %>
 <div id='portfolio_show'>
   <h1><%= @portfolio.name %></h1>
+  <%= hidden_field(:portfolio, :id, :value => @portfolio.id) %>
   <div class="row">
     <div class="col-md-8">
       <div class='js-stocks'>
@@ -23,6 +24,7 @@
 
 <script>
 
-    init_count();
+    init_count($("#portfolio_id").val());
+    console.log($("#portfolio_id").val())
 
 </script>
