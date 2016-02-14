@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Blocpicker</title>
-   <%= include_gon(:init => true) %>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <%= stylesheet_link_tag    "application", media: "all" %>
    <%= javascript_include_tag "application" %>
@@ -30,7 +29,7 @@
           <% end %>
         </ul>
         </div>
-     <div class="flash">   
+     <div class="flash">
      <% if flash[:notice] %>
        <div class="alert alert-success">
          <button type="button" class="close" data-dismiss="alert">&times;</button>

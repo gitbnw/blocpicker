@@ -1,3 +1,4 @@
+<%= include_gon(:init => true) %>
 <div id='portfolio_show'>
   <h1><%= @portfolio.name %></h1>
   <div class="row">
@@ -21,8 +22,7 @@
 </div>
 
 <script>
-  $(document).on("page:change", function() {
+
     init_count();
-  });
 
 </script>
