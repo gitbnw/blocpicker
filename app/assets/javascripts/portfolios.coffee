@@ -31,18 +31,34 @@ IsJsonString = (str) ->
 
 refresh_quotes = (stock_ids) ->
   portfolio_id = window.portfolio_id
-  url = "http://localhost:3000/api/v1/stocks/refresh"
-  $.ajax
-    url: url
-    type: "POST"
-    data: {stock_ids, portfolio_id}
-    dataType: "html"
-    error: (jqXHR, textStatus, errorThrown) ->
-       $('body').append "AJAX Error: #{textStatus}"
-    success: (data, textStatus, jqXHR) ->
-      r = $.parseJSON(data);
-      console.log r
-      #  $('.js-stocks').hide().html(data).fadeIn 'slow', -> return
+  url = "refresh"
+  console.log 'refresh_quotes called'
+  if stock_ids.length > 0
+    console.log 'expired stocks_ids exist'
+    $.ajax
+      url: url
+      type: "POST"
+      data: {stock_ids, portfolio_id}
+      dataType: "json"
+      error: (jqXHR, textStatus, errorThrown) ->
+         $('body').append "AJAX Error: #{textStatus}"
+      success: (stocks_data, textStatus, jqXHR) ->
+        $.each stocks_data, (index, stock) ->
+          if stock['tick'] = 'none'
+            #rebuild render and apply css effects to show bold fade back to normal
+            $('#stock-'+stock['id']).html('font-weight','Bold');
+          else if stock['tick'] = 'up'  
+            #rebuild render and apply css effects to show bold green fade back to normal
+            $('#stock-'+stock['id']).html('font-weight','Bold');
+          else
+            #rebuild render and apply css effects to show bold red fade back to normal
+            $('#stock-'+stock['id']).html('font-weight','Bold');            
+        #     $.each stock_array, (stock) ->
+        #       stock_render = $('<%= raw render(stock) %>')
+        #       $('body').append stock_render
+        #       return
+        #   return   
+        #  $('.js-stocks').hide().html(data).fadeIn 'slow', -> return
 
 refresh_portfolio = ->
   console.log 'refresh_portfolio called'
@@ -50,9 +66,7 @@ refresh_portfolio = ->
 
 checkRefresh = ->
   console.log 'checkRefresh called'
-
   turbolinksSetInterval(refresh_portfolio, 10000)
-
   return
 
 myStopFunction = ->

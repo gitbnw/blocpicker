@@ -14,6 +14,7 @@ class Stock < ActiveRecord::Base
 
 
   def self.quote_update(stocks)
+    stocks = Array.wrap(stocks)
 
     symbol_array = stocks.map(&:symbol)
 
@@ -41,20 +42,5 @@ class Stock < ActiveRecord::Base
 
   end
 
-  private
-
-  # def self.assign_or_new(attributes)
-
-  #   obj = first || new
-  #   obj.assign_attributes(attributes)
-  #   obj
-  # end
-
-  # def self.request_remote
-  #   RemoteUpdate.find(stock)
-  # end
-
-  # def request_remote
-  #   self.class.request_remote
-  # end
+  
 end

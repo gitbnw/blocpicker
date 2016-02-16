@@ -19,6 +19,8 @@ Rails.application.routes.draw do
         post '/stocks/refresh', to: 'stocks#refresh'
      end
   end
+  
+  post '/portfolios/refresh', to: 'portfolios#refresh'
 
   root 'home#index'
 
