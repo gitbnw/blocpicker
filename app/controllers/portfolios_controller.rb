@@ -24,12 +24,12 @@ class PortfoliosController < ApplicationController
 
   end
 
-  def refresh
-    @portfolio = Portfolio.where(params[:portfolio_id]).first
-    @stocks = Stock.find(params[:stock_ids])
-    Stock.quote_update(Array.wrap(@stocks))
-    render partial: "stocks/list", class: 'stockslist', locals: { stocks: @portfolio.stocks }, status: 200
-  end
+  # def refresh
+  #   @portfolio = Portfolio.where(params[:portfolio_id]).first
+  #   @stocks = Stock.quote_update(Array.wrap(Stock.find(params[:stock_ids])))
+  #   @stocks.map {|stock| stock.save }
+  #   render partial: "stocks/list", class: 'stockslist', locals: { stocks: @portfolio.stocks }, status: 200
+  # end
 
   def show
     @portfolio = Portfolio.find(params[:id])

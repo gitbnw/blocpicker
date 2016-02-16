@@ -31,7 +31,7 @@ IsJsonString = (str) ->
 
 refresh_quotes = (stock_ids) ->
   portfolio_id = window.portfolio_id
-  url = "http://localhost:3000/portfolios/refresh"
+  url = "http://localhost:3000/api/v1/stocks/refresh"
   $.ajax
     url: url
     type: "POST"
@@ -40,8 +40,9 @@ refresh_quotes = (stock_ids) ->
     error: (jqXHR, textStatus, errorThrown) ->
        $('body').append "AJAX Error: #{textStatus}"
     success: (data, textStatus, jqXHR) ->
-       $('.js-stocks').hide().html(data).fadeIn 'slow', ->
-         return
+      r = $.parseJSON(data);
+      console.log r
+      #  $('.js-stocks').hide().html(data).fadeIn 'slow', -> return
 
 refresh_portfolio = ->
   console.log 'refresh_portfolio called'
@@ -63,8 +64,9 @@ myStopFunction = ->
   console.log '@init_refresh called'
   if myCount > 0
     console.log 'portfolio has stocks, refresh'
-    if checkTime()
-      $ checkRefresh
+    # if checkTime()
+    #
+    $ checkRefresh
   else
     console.log 'portfolio has no stocks, stop refresh'
 

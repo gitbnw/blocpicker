@@ -14,6 +14,12 @@ Rails.application.routes.draw do
     resources :stocks, only: [:create, :show]
   end
 
+  namespace :api do
+     namespace :v1 do
+        post '/stocks/refresh', to: 'stocks#refresh'
+     end
+  end
+
   root 'home#index'
 
 end
