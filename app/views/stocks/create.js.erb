@@ -9,7 +9,7 @@
     
     
     $(".js-stocks").hide().html($list).fadeIn("slow", function() {
-       $('#stock-<%= @stock.id %>').removeClass( "bg-success text-success" ).addClass( "white-bg" );
+       $('#stock-<%= @stock.id %>').removeClass( "text-bold" ).addClass( "text-norm" );
     })
     
     $('.new-stock').html("<%= escape_javascript(render partial: 'stocks/form', locals: { portfolio: @portfolio, stock: Stock.new }) %>");

@@ -8,8 +8,6 @@ Rails.application.routes.draw do
 
   resources :picks, only: [:show]
 
-  post '/portfolios/refresh', to: 'portfolios#refresh'
-
   resources :portfolios do
     resources :stocks, only: [:create, :show]
   end
@@ -20,7 +18,7 @@ Rails.application.routes.draw do
      end
   end
   
-  post '/portfolios/refresh', to: 'portfolios#refresh'
+  post '/stocks/refresh', to: 'stocks#refresh'
 
   root 'home#index'
 

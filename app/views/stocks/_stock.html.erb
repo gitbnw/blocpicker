@@ -2,16 +2,20 @@
  <% if @portfolio_stock.updated_at > Time.now-3.seconds %>
 
  
- <%= content_tag :div, class: 'media transition-bg-color text-success bg-success', id: "stock-#{stock.id}" do %>
+ <%= content_tag :div, class: 'media transition-bold transition-color transition-bg-color text-bold', id: "stock-#{stock.id}" do %>
    <div class="media">
     <div class="media-body">
 
-      <div class="stock"><%= stock.symbol %>: <%= stock.lasttradepriceonly %></div>
+      <div class="stock">
+       <div class="stock_symbol"><%= stock.symbol %></div>
+       <div class="stock_ltpo">: <%= stock.lasttradepriceonly %></div>
+       <div class="stock_symbol"><%= stock.volume %></div>
+       </div>
     </div>
   </div>
  <% end %>
  <% else %>
- <%= content_tag :div, class: 'media', id: "stock-#{stock.id}" do %>
+ <%= content_tag :div, class: 'media transition-color transition-bg-color', id: "stock-#{stock.id}" do %>
    <div class="media">
     <div class="media-body">
       <div class="stock"><%= stock.symbol %>: <%= stock.lasttradepriceonly %></div>

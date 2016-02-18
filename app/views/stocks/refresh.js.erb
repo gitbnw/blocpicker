@@ -1,0 +1,30 @@
+<% @stocks.each do |stock| %>
+
+    $stock = $("<%= j render(stock) %>");
+
+    
+    <% if stock.tick == 'up' %>
+    console.log('change up')
+        $('#stock-<%= stock.id %>').parent().hide().html($stock).promise().done(function() {
+            $('#stock-<%= stock.id %>').removeClass( "bg-norm text-norm" ).addClass( "bg-success text-success" ).parent().fadeIn("slow", function() {
+                $('#stock-<%= stock.id %>').removeClass( "bg-success text-success" ).addClass("bg-norm text-norm")
+            })
+        })
+    <% elsif stock.tick == 'down' %>
+    console.log('change down')
+        $('#stock-<%= stock.id %>').parent().hide().html($stock).promise().done(function() {
+            $('#stock-<%= stock.id %>').removeClass( "bg-norm text-norm" ).addClass( "bg-danger text-danger" ).parent().fadeIn("slow", function() {
+                $('#stock-<%= stock.id %>').removeClass( "bg-danger text-danger" ).addClass("bg-norm text-norm")
+            })
+        })
+     <% else %>
+     console.log('no change')
+        $('#stock-<%= stock.id %>').parent().hide().html($stock).promise().done(function() {
+            $('#stock-<%= stock.id %>').parent().fadeIn("slow", function() {
+            })
+        })      
+     <% end %>
+
+
+  <% end %>
+  

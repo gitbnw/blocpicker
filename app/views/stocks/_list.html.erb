@@ -1,5 +1,9 @@
  <% if stocks.empty?  %>
    <h4 class="empty_head">Portfolio is empty.  Please add some stocks.</h4>
   <% else %>
-   <%= render stocks %>
+   <% stocks.each do |stock| %> 
+    <div class="js-stock">
+     <%= render stock %>
+    </div>
+  <% end %>
  <% end %>
