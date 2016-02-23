@@ -1,11 +1,8 @@
-
     init_count();
-
-
 
  <% if @stock.valid? && @portfolio_stock == false %>
 
-    $list = $("<%= j render(@portfolio.stocks) %>");
+    $list = $("<%= j render partial: "stocks/list", class: 'stockslist', locals: { stocks: @portfolio.stocks }  %>");
     
     
     $(".js-stocks").hide().html($list).fadeIn("slow", function() {
@@ -22,7 +19,5 @@
 
   <% unless @portfolio.stocks.empty? %>
      $('.empty_head').remove()
-     <!--init check refresh-->
-
   <% end %>
   

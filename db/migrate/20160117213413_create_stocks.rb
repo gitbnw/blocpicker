@@ -3,7 +3,7 @@ class CreateStocks < ActiveRecord::Migration
     create_table :stocks do |t|
       t.string :symbol
       t.string :name
-      t.decimal :change
+      t.string :change
       t.decimal :volume
       t.timestamps null: false
     end

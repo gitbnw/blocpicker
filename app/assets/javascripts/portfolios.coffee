@@ -13,7 +13,6 @@ turbolinksSetInterval = (intervalFunction, seconds) ->
   interval = setInterval(intervalFunction, seconds)
 
   removeInterval = ->
-    console.log 'removeInterval called'
     clearInterval interval
     $(document).off 'page:change', removeInterval
     return
@@ -32,9 +31,7 @@ IsJsonString = (str) ->
 refresh_quotes = (stock_ids) ->
   portfolio_id = window.portfolio_id
   url = "../api/v1/stocks/refresh"
-  console.log 'refresh_quotes called'
   if stock_ids.length > 0
-    console.log 'expired stocks_ids exist'
     $.ajax
       url: url
       type: "POST"
@@ -56,32 +53,26 @@ refresh_quotes = (stock_ids) ->
             
 
 refresh_portfolio = ->
-  console.log 'refresh_portfolio called'
   gon.watch 'expired_stocks_ids', refresh_quotes
 
 checkRefresh = ->
-  console.log 'checkRefresh called'
   turbolinksSetInterval(refresh_portfolio, 10000)
   return
 
 myStopFunction = ->
-  console.log 'myStopFunction called'
   clearInterval checkRefresh
   return
 
 @init_refresh = (myCount) ->
   console.log '@init_refresh called'
   if myCount > 0
-    console.log 'portfolio has stocks, refresh'
     # if checkTime()
     #
     $ checkRefresh
   else
-    console.log 'portfolio has no stocks, stop refresh'
 
     $ myStopFunction
 
 @init_count = (@portfolio_id) ->
   window.portfolio_id = @portfolio_id
-  console.log '@init count called'
   gon.watch 'myCount', @init_refresh

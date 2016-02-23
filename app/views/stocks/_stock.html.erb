@@ -1,26 +1,26 @@
  <% @portfolio_stock = PortfoliosStocks.where(stock: stock).first %>
  <% if @portfolio_stock.updated_at > Time.now-3.seconds %>
 
- 
- <%= content_tag :div, class: 'media transition-bold transition-color transition-bg-color text-bold', id: "stock-#{stock.id}" do %>
-   <div class="media">
-    <div class="media-body">
 
-      <div class="stock">
-       <div class="stock_symbol"><%= stock.symbol %></div>
-       <div class="stock_ltpo">: <%= stock.lasttradepriceonly %></div>
-       <div class="stock_symbol"><%= stock.volume %></div>
-       </div>
-    </div>
-  </div>
- <% end %>
+
+     <span class="stock-text transition-bold transition-color transition-bg-color text-bold" id="<%= "stock-#{stock.id}" %>">
+       <div class="col-md-2 stock_symbol"><%= stock.symbol %></div>
+       <div class="col-md-2 stock_ltpo stock_dynamic"><%= stock.lasttradepriceonly %></div>
+       <div class="col-md-2 stock_change stock_dynamic"><%= stock.change %></div>
+       <div class="col-md-2 stock_volume stock_dynamic"><%= stock.volume %></div>
+     </span>
+ 
+
  <% else %>
- <%= content_tag :div, class: 'media transition-color transition-bg-color', id: "stock-#{stock.id}" do %>
-   <div class="media">
-    <div class="media-body">
-      <div class="stock"><%= stock.symbol %>: <%= stock.lasttradepriceonly %></div>
-    </div>
-  </div>
- <% end %>
- <% end %>
+
+     <span class="stock-text transition-color transition-bg-color" id="<%= "stock-#{stock.id}" %>">
+       <div class="col-md-2 stock_symbol"><%= stock.symbol %></div>
+       <div class="col-md-2 stock_ltpo stock_dynamic"><%= stock.lasttradepriceonly %></div>
+       <div class="col-md-2 stock_change stock_dynamic"><%= stock.change %></div>
+       <div class="col-md-2 stock_volume stock_dynamic"><%= stock.volume %></div>
+     </span>
+
+
+<% end %>
+
 
