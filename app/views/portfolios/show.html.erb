@@ -32,5 +32,17 @@
       ctx.fillStyle = "white";
       ctx.fillRect(0, 0, 200, 14);
     })
-    
+    $( ".stock_change" ).each(function(index, d) {
+      
+      var price_str = $( d ).text()
+      var price_sym = price_str.charAt(0);
+
+      if (price_sym == "+"){
+        $( d ).addClass("text-success")
+      }
+      else if (price_sym == "-") {
+        $( d ).addClass("text-danger")
+      }
+    })
+    // need to conditional color change
 </script>
