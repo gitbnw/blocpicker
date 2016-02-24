@@ -6,7 +6,6 @@ class PortfoliosController < ApplicationController
 
   end
 
-
   def create
 
     @portfolio = Portfolio.new

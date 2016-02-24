@@ -10,10 +10,10 @@ module ApplicationHelper
   def flash_messages(opts = {})
     flash.each do |msg_type, message|
       concat(content_tag(:div, message, class: "alert #{bootstrap_class_for(msg_type)} fade in text-center") do
-              concat content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' })
-              concat message + " "
-              concat content_tag(:i, nil, class: "glyphicon glyphicon-#{bootstrap_icon_for(msg_type)}")
-            end)
+               concat content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' })
+               concat message + " "
+               concat content_tag(:i, nil, class: "glyphicon glyphicon-#{bootstrap_icon_for(msg_type)}")
+      end)
     end
     nil
   end
@@ -33,5 +33,5 @@ module ApplicationHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
-  
+
 end

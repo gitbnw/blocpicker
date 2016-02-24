@@ -1,7 +1,7 @@
 class Api::V1::StocksController < Api::V1::BaseController
 
   include StocksHelper
-  
+
   def refresh
     @portfolio = Portfolio.where(params[:portfolio_id]).first
     @stocks = Stock.quote_update(Stock.find(params[:stock_ids]))
@@ -11,7 +11,7 @@ class Api::V1::StocksController < Api::V1::BaseController
   end
 
   def price_change_assign(stocks)
-    
+
     stocks.each do |stock|
       @change = stock.lasttradepriceonly - stock.lasttradepriceonly_was
       if @change > 0
@@ -21,9 +21,9 @@ class Api::V1::StocksController < Api::V1::BaseController
       else
         stock[:tick] = "none"
       end
-      
+
     end
 
-  end 
+  end
 
 end
