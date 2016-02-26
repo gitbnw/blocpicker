@@ -7,6 +7,8 @@
     
     $(".js-stocks").hide().html($list).fadeIn("slow", function() {
        $('#stock-<%= @stock.id %>').removeClass( "text-bold" ).addClass( "text-norm" );
+       var c = $('#canvas-<%= @stock.id %>')
+       show(c)
     })
     
     $('.new-stock').html("<%= escape_javascript(render partial: 'stocks/form', locals: { portfolio: @portfolio, stock: Stock.new }) %>");
@@ -16,7 +18,9 @@
    $('.flash').prepend("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:alert] %></div>");
    $('.new-stock').html("<%= escape_javascript(render partial: 'stocks/form', locals: { portfolio: @portfolio, stock: Stock.new }) %>");
  <% end %>
+   
 
+   
   <% unless @portfolio.stocks.empty? %>
      $('.empty_head').remove()
   <% end %>

@@ -27,10 +27,7 @@
     init_count($("#portfolio_id").val());
     
     $( "canvas" ).each(function( index, c ) {
-      c.getContext("2d");
-      ctx = c.getContext("2d");
-      ctx.fillStyle = "white";
-      ctx.fillRect(0, 0, 200, 14);
+      show(c)
     })
     $( ".stock_change" ).each(function(index, d) {
       

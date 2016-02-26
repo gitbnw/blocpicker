@@ -42,7 +42,7 @@ class StocksController < ApplicationController
  
   def refresh
     @stocks = Stock.find(params[:stock_ids])
-    
+
     respond_to do |format|
       format.html
       format.js

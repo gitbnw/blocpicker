@@ -43,6 +43,8 @@ module StocksHelper
             return Array.wrap(quote)
          else
           # this just raises the net/http response that was raised
+          puts 'error with yahoo api call'
+          puts query
           puts response
         end
 

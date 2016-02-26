@@ -12,12 +12,12 @@
     <% end %>
 
     $stock = $("<%= j render(stock) %>");
-    
+
     copy(tick_color, canvas)
-    
-    $('#stock-<%= stock.id %> .stock_dynamic ').hide().find('.stock-text').html($stock).promise().done(function() {
+
+    $('#stock-<%= stock.id %> .stock_dynamic ').hide()
+    $('#stock-<%= stock.id %>').parent().html($stock).promise().done(function() {
          $('#stock-<%= stock.id %> .stock_dynamic').fadeIn("slow")
-         <!--hide and show only the dynamic parts-->
      })  
 
   <% end %>
