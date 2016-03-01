@@ -35,24 +35,15 @@ module StocksHelper
 
       if response.success?
 
-            quote = decoded["query"]["results"]["quote"]
-            #Array.wrap to handle if single hash or multiple in array
-            return Array.wrap(quote)
-         else
-          # this just raises the net/http response that was raised
-          puts 'error with yahoo api call'
-          puts query
-          puts response
-        end
-
         decoded = JSON.parse response.body
-
 
         quote = decoded["query"]["results"]["quote"]
         #Array.wrap to handle if single hash or multiple in array
         return Array.wrap(quote)
       else
         # this just raises the net/http response that was raised
+        puts 'error with yahoo api call'
+        puts query
         puts response
       end
 

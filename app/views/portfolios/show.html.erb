@@ -23,23 +23,12 @@
 </div>
 
 <script>
-    var ctx
+
     init_count($("#portfolio_id").val());
     
-    $( "canvas" ).each(function( index, c ) {
-      show(c)
-    })
-    $( ".stock_change" ).each(function(index, d) {
-      
-      var price_str = $( d ).text()
-      var price_sym = price_str.charAt(0);
+    // $( "canvas" ).each(function( index, c ) {
+    //   show(c)
+    // })
 
-      if (price_sym == "+"){
-        $( d ).addClass("text-success")
-      }
-      else if (price_sym == "-") {
-        $( d ).addClass("text-danger")
-      }
-    })
-    // need to conditional color change
+
 </script>

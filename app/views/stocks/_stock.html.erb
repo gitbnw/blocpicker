@@ -1,28 +1,32 @@
- <% @portfolio_stock = PortfoliosStocks.where(stock: stock).first %>
- <% if @portfolio_stock.updated_at > Time.now-3.seconds %>
+<% @portfolio_stock = PortfoliosStocks.where(stock: stock).first %>
+<% @change_fraction = stock.change.to_f / (stock.lasttradepriceonly.to_f + stock.change.to_f) %>
+<% @change_percentage = number_to_percentage(@change_fraction * 100, precision: 2) %>
+<% @change_sign = @change_fraction >= 0 ? "+" : nil %>
+<% @change_string = @change_sign.to_s + @change_percentage.to_s %>
+<div class="stock-holder" id="<%= "stock-holder-#{stock.id}" %>">
+  <span class="stock-text transition-color transition-bg-color <%= 'transition-bold text-bold' if @portfolio_stock.updated_at > Time.now-3.seconds %>" id="<%= "stock-#{stock.id}" %>">
+    <div class="col-md-1 stock_symbol"><%= stock.symbol %></div>
+    <div class="col-md-1 stock_ltpo stock_dynamic"><%= number_with_precision(stock.lasttradepriceonly) %></div>
+    <div class="col-md-1 stock_change stock_dynamic"><%= stock.change %></div>
+    <div class="col-md-1 stock_percent stock_dynamic"><%= @change_string %></div>
+    <div class="col-md-2 stock_volume stock_dynamic"><%= number_to_human(stock.volume) %></div>
+    <div class="col-md-2 stock_updated_at stock_dynamic"><%= stock.updated_at %></div>
+  </span>
+</div>
 
+<script>
 
+    
+    $( ".stock_change, .stock_percent" ).each(function(index, d) {
+      
+      var price_str = $( d ).text()
+      var price_sym = price_str.charAt(0);
+      if (price_sym == "+"){
+        $( d ).addClass("text-success")
+      }
+      else if (price_sym == "-") {
+        $( d ).addClass("text-danger")
+      }
+    })
 
-     <span class="stock-text transition-bold transition-color transition-bg-color text-bold" id="<%= "stock-#{stock.id}" %>">
-       <div class="col-md-2 stock_symbol"><%= stock.symbol %></div>
-       <div class="col-md-2 stock_ltpo stock_dynamic"><%= stock.lasttradepriceonly %></div>
-       <div class="col-md-2 stock_change stock_dynamic"><%= stock.change %></div>
-       <div class="col-md-2 stock_volume stock_dynamic"><%= stock.volume %></div>
-       <div class="col-md-2 stock_updated_at stock_dynamic"><%= stock.updated_at %></div>
-     </span>
- 
-
- <% else %>
-
-     <span class="stock-text transition-color transition-bg-color" id="<%= "stock-#{stock.id}" %>">
-       <div class="col-md-2 stock_symbol"><%= stock.symbol %></div>
-       <div class="col-md-2 stock_ltpo stock_dynamic"><%= stock.lasttradepriceonly %></div>
-       <div class="col-md-2 stock_change stock_dynamic"><%= stock.change %></div>
-       <div class="col-md-2 stock_volume stock_dynamic"><%= stock.volume %></div>
-       <div class="col-md-2 stock_updated_at stock_dynamic"><%= stock.updated_at %></div>
-     </span>
-
-
-<% end %>
-
-
+</script>

@@ -14,7 +14,12 @@ canvasArr = []
     i++
   return canvasObj['gradi']
     
-@show = (canvas) ->
+@show = (canvas, tick_color = "white") ->
+  find_canvasObj = $.grep canvasArr, (canvasObj, i) ->
+    canvasObj["canvas"] == canvas 
+    
+  if find_canvasObj.length > 0
+    
   ctx = canvas.getContext('2d')
   gradi = ctx.createLinearGradient(0, 0, 200, 0);
   canvasObj = {}
@@ -34,7 +39,8 @@ canvasArr = []
   ]
   ctx.fillStyle = colorize(canvasObj);
   ctx.fillRect(0,0,200,14);
-  canvasArr.push(canvasObj)
+  if canvasArr.indexOf(canvasObj) < 0
+    canvasArr.push(canvasObj)
   
 @copy = (tick_color, canvas) ->
   ctx = canvas.getContext('2d')

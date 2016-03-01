@@ -15,10 +15,8 @@
 
     copy(tick_color, canvas)
 
-    $('#stock-<%= stock.id %> .stock_dynamic ').hide()
-    $('#stock-<%= stock.id %>').parent().html($stock).promise().done(function() {
-         $('#stock-<%= stock.id %> .stock_dynamic').fadeIn("slow")
-     })  
+    $('#stock-<%= stock.id %>').parent().html($stock)
+
 
   <% end %>
   

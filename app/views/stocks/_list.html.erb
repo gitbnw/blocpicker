@@ -2,9 +2,10 @@
    <h4 class="empty_head">Portfolio is empty.  Please add some stocks.</h4>
   <% else %>
   <div class="row" id="list_head">
-   <div class="col-md-2">Symbol</div>
-   <div class="col-md-2">Price</div>
-   <div class="col-md-2">Change</div>
+   <div class="col-md-1">Symbol</div>
+   <div class="col-md-1">Price</div>
+   <div class="col-md-1">Change</div>
+   <div class="col-md-1">Percent</div>
    <div class="col-md-2">Volume</div>
    <div class="col-md-2">Updated_At</div>
    <div class="col-md-2">Tick Chart</div>
@@ -13,12 +14,19 @@
    <div class="media">
     <div class="media-body">   
     <div class="js-stock row">
-     <%= render stock %>
-
-        <div class="col-md-2 stock_canvas"><%=content_tag :canvas, 'canvas', id: "canvas-#{stock.id}", class: 'tick_chart', width: '200', height: '14' %></div>
+      <%= render stock %>
+      <div class="col-md-2 stock_canvas"><%=content_tag :canvas, 'canvas', id: "canvas-#{stock.id}", class: 'tick_chart', width: '200', height: '14' %>
       </div>
+     </div>
      </div>     
 </div>
+<script>
 
+    $( "canvas" ).each(function( index, c ) {
+      show(c)
+    })
+
+ 
+</script>
   <% end %>
  <% end %>

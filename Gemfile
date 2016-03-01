@@ -19,10 +19,10 @@ group :test do
 end
 
 # Use sqlite3 as the database for Active Record
- group :development do
+group :development do
    gem 'sqlite3'
- end
- 
+end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -53,18 +53,20 @@ gem 'turbolinks'
 gem 'devise', '~> 3.5'
 
 gem 'figaro'
- 
+
 gem 'bootstrap-sass', '~> 3.3'
 
 gem 'font-awesome-sass'
 
 gem 'omniauth'
 
-gem "omniauth-google-oauth2"
+gem 'omniauth-google-oauth2'
 
 gem 'httparty'
 
-gem 'whenever', :require => false
+gem 'whenever', require: false
 
 gem 'gon'
 gem 'rabl-rails'
+
+gem 'rubocop'
