@@ -38,6 +38,7 @@ module StocksHelper
         decoded = JSON.parse response.body
 
         quote = decoded["query"]["results"]["quote"]
+
         #Array.wrap to handle if single hash or multiple in array
         return Array.wrap(quote)
       else

@@ -7,26 +7,10 @@
    <div class="col-md-1">Change</div>
    <div class="col-md-1">Percent</div>
    <div class="col-md-2">Volume</div>
+   <div class="col-md-2">Avg Dly Vol</div>
    <div class="col-md-2">Updated_At</div>
-   <div class="col-md-2">Tick Chart</div>
   </div>
-   <% stocks.each do |stock| %> 
-   <div class="media">
-    <div class="media-body">   
-    <div class="js-stock row">
-      <%= render stock %>
-      <div class="col-md-2 stock_canvas"><%=content_tag :canvas, 'canvas', id: "canvas-#{stock.id}", class: 'tick_chart', width: '200', height: '14' %>
-      </div>
-     </div>
-     </div>     
-</div>
-<script>
+  
+  <%= render stocks %>
 
-    $( "canvas" ).each(function( index, c ) {
-      show(c)
-    })
-
- 
-</script>
-  <% end %>
  <% end %>

@@ -15,40 +15,24 @@ canvasArr = []
   return canvasObj['gradi']
     
 @show = (canvas, tick_color = "white") ->
-  find_canvasObj = $.grep canvasArr, (canvasObj, i) ->
-    canvasObj["canvas"] == canvas 
-    
-  if find_canvasObj.length > 0
-    
   ctx = canvas.getContext('2d')
   gradi = ctx.createLinearGradient(0, 0, 200, 0);
-  canvasObj = {}
-  canvasObj['gradi'] = gradi
-  canvasObj['canvas'] = canvas
-  canvasObj['ArrColor'] = [
-    'white'
-    'white'
-    'white'
-    'white'
-    'white'
-    'white'
-    'white'
-    'white'
-    'white'
-    'white'
-  ]
-  ctx.fillStyle = colorize(canvasObj);
-  ctx.fillRect(0,0,200,14);
-  if canvasArr.indexOf(canvasObj) < 0
+  
+  find_canvasObj = $.grep canvasArr, (canvasObj, i) ->
+    canvasObj["canvas"] == canvas 
+  
+  if jQuery.isEmptyObject(find_canvasObj) #does not exist yet
+    canvasObj = {}
+    canvasObj['gradi'] = gradi
+    canvasObj['canvas'] = canvas
+    canvasObj['ArrColor'] = Array.apply(null, Array(10)).map ->
+      'white'
+      
     canvasArr.push(canvasObj)
+    this_canvasObj = canvasObj
+  else
+    this_canvasObj = find_canvasObj[0]
   
-@copy = (tick_color, canvas) ->
-  ctx = canvas.getContext('2d')
-  gradi = ctx.createLinearGradient(0, 0, 200, 0);
-  find_canvasObj = $.grep canvasArr, (canvasObj, i) ->
-    canvasObj["canvas"] == canvas 
-  
-  this_canvasObj = find_canvasObj[0]
   this_canvasObj['gradi'] = gradi
   this_canvasObj['ArrColor'].pop()
   this_canvasObj['ArrColor'].unshift(tick_color)

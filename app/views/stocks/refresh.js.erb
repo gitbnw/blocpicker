@@ -1,21 +1,10 @@
 <% @stocks.each do |stock| %>
 
-    var tick_color
-    var canvas = $('#canvas-<%= stock.id %>')[0]
-    
-    <% if stock.tick == 'up' %>
-        tick_color = 'green'
-    <% elsif stock.tick == 'down' %>
-        tick_color = 'red'
-    <% else %>
-        tick_color = 'gray'
-    <% end %>
-
     $stock = $("<%= j render(stock) %>");
 
-    copy(tick_color, canvas)
-
-    $('#stock-<%= stock.id %>').parent().html($stock)
+    $jsstock = $('#stock-holder-<%= stock.id %>').parent()
+    
+    $jsstock.html($stock)
 
 
   <% end %>

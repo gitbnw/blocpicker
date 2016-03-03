@@ -1,6 +1,7 @@
 class Api::V1::StocksController < Api::V1::BaseController
 
   include StocksHelper
+  include ActionView::Helpers::NumberHelper
 
   def refresh
     @portfolio = Portfolio.where(params[:portfolio_id]).first
@@ -11,12 +12,12 @@ class Api::V1::StocksController < Api::V1::BaseController
   end
 
   def price_change_assign(stocks)
-
     stocks.each do |stock|
-      @change = stock.lasttradepriceonly - stock.lasttradepriceonly_was
-      if @change > 0
+      @change = 100 * ((stock.lasttradepriceonly / stock.lasttradepriceonly ) - (stock.lasttradepriceonly_was / stock.lasttradepriceonly))
+      
+      if @change > 0.05
         stock[:tick] = "up"
-      elsif @change < 0
+      elsif @change < -0.05
         stock[:tick] = "down"
       else
         stock[:tick] = "none"

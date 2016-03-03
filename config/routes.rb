@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :picks, only: [:show]
 
   resources :portfolios do
+    get 'intraday', to: 'portfolios#intraday'
+    get 'value', to: 'portfolios#value'
     resources :stocks, only: [:create, :show]
   end
 
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
   end
   
   post '/stocks/refresh', to: 'stocks#refresh'
+  
 
   root 'home#index'
 
