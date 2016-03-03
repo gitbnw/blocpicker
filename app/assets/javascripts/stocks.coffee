@@ -2,9 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-
 canvasArr = []
-
 
 @colorize = (canvasObj) ->
   i = 0
@@ -38,3 +36,7 @@ canvasArr = []
   this_canvasObj['ArrColor'].unshift(tick_color)
   ctx.fillStyle = colorize(this_canvasObj);
   ctx.fillRect(0,0,200,14); 
+
+$(document).on 'ready page:change', ->
+  $('.tag-tooltip').tooltip()
+  return

@@ -10,6 +10,10 @@ class Api::V1::StocksController < Api::V1::BaseController
     @stocks.map {|stock| stock.save }
     render json: @stocks
   end
+  
+  def refresh_historical(stocks = Stock.all)
+    
+  end
 
   def price_change_assign(stocks)
     stocks.each do |stock|
@@ -24,7 +28,11 @@ class Api::V1::StocksController < Api::V1::BaseController
       end
 
     end
-
+    
+  def bounce_assign(stock)
+    
+  end
+  
   end
 
 end

@@ -1,0 +1,31 @@
+
+<div id='portfolio_intraday'>
+  <h1><%= @portfolio.name %></h1>
+  <%= hidden_field(:portfolio, :id, :value => @portfolio.id) %>
+  <div class="row">
+    <div class="col-md-8">
+      <div class='js-stocks'>
+
+        <%= render partial: "stocks/intraday_list", class: 'stockslist', locals: { stocks: @portfolio.stocks } %>
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+      <%= link_to "Default", portfolio_intraday_path(@portfolio), class: 'btn btn-primary' %>
+      <%= link_to "Value", portfolio_value_path(@portfolio), class: 'btn btn-primary' %>
+      <%= link_to "Delete Portfolio", @portfolio, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this portfolio?'} %>
+    </div>
+  </div>
+</div>
+
+<script>
+
+    init_count($("#portfolio_id").val());
+    
+    // $( "canvas" ).each(function( index, c ) {
+    //   show(c)
+    // })
+
+
+</script>

@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   resources :portfolios do
     get 'intraday', to: 'portfolios#intraday'
     get 'value', to: 'portfolios#value'
-    resources :stocks, only: [:create, :show]
+    resources :stocks, only: [:create, :show] do
+      get 'history', to: 'stocks#history'
+    end
   end
 
   namespace :api do
@@ -22,7 +24,6 @@ Rails.application.routes.draw do
   
   post '/stocks/refresh', to: 'stocks#refresh'
   
-
   root 'home#index'
 
 end

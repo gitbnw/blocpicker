@@ -47,7 +47,17 @@ class StocksController < ApplicationController
       format.js
     end
   end
+  
+  def history
+    @stocks = Stock.find(params[:stock_ids])
 
+    respond_to do |format|
+      format.html
+      format.js
+    end
+    
+  end
+  
   private
 
   def stock_params
