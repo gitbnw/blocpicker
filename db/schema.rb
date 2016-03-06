@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303215420) do
+ActiveRecord::Schema.define(version: 20160304191301) do
+
+  create_table "histories", force: :cascade do |t|
+    t.integer  "stock_id"
+    t.string   "symbol"
+    t.date     "date"
+    t.decimal  "open"
+    t.decimal  "high"
+    t.decimal  "low"
+    t.decimal  "close"
+    t.integer  "volume"
+    t.decimal  "adj_close"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "portfolios", force: :cascade do |t|
     t.integer  "user_id"

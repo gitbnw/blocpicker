@@ -1,6 +1,6 @@
 class Api::V1::StocksController < Api::V1::BaseController
 
-  include StocksHelper
+  include RemoteHelper
   include ActionView::Helpers::NumberHelper
 
   def refresh
@@ -11,8 +11,8 @@ class Api::V1::StocksController < Api::V1::BaseController
     render json: @stocks
   end
   
-  def refresh_historical(stocks = Stock.all)
-    
+  def refresh_history(stocks = Stock.all)
+    @history = History.history_update(stocks, start_date, end_date)
   end
 
   def price_change_assign(stocks)

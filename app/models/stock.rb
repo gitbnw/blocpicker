@@ -1,10 +1,11 @@
 class Stock < ActiveRecord::Base
 
-  include StocksHelper
+  include RemoteHelper
 
   #has_many :picks
   has_and_belongs_to_many :portfolios, -> { uniq } #, through: :picks
   has_many :portfolios_stocks
+  has_many :histories
   validates :symbol, uniqueness: true
 
   default_scope { order('symbol ASC') }
@@ -18,7 +19,7 @@ class Stock < ActiveRecord::Base
 
     symbol_array = stocks.map(&:symbol)
 
-    quote = RemoteUpdate.find(symbol_array)
+    quote = Quote.find(symbol_array)
 
     stocks.each_with_index do |stock, i|
 

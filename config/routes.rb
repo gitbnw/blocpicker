@@ -11,9 +11,11 @@ Rails.application.routes.draw do
   resources :portfolios do
     get 'intraday', to: 'portfolios#intraday'
     get 'value', to: 'portfolios#value'
-    resources :stocks, only: [:create, :show] do
-      get 'history', to: 'stocks#history'
-    end
+    resources :stocks, only: [:create, :show]
+  end
+  
+  resources :stocks, only: [] do
+    get 'history', to: 'histories#show'
   end
 
   namespace :api do
