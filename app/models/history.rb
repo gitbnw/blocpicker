@@ -3,32 +3,36 @@ class History < ActiveRecord::Base
   include RemoteHelper
   
   belongs_to :stock
-  
-  validates :symbol, uniqueness: true
 
   default_scope { order('symbol ASC') }
+  
+  scope :current, -> { where(date: DateTime.now.to_date - 90..DateTime.now.to_date) }
 
-  def self.history_update(symbol, start_date, end_date)
+  def self.find_or_complete(stock)
     
-    histories = History.find_or_initialize_by(:symbol => symbol, :date => (DateTime.now.to_date - 365)..(DateTime.now.to_date))
-    puts histories
-    
-    history_response = HQuote.quote(symbol, start_date, end_date)
-    
-    histories.each_with_index do |history, i|
-        
 
-      history.assign_attributes!(
-        date: quote[i]["Date"],
-        open: quote[i]["Open"],
-        high: quote[i]["High"],
-        low: quote[i]["Low"],
-        close: quote[i]["Close"],
-        volume: quote[i]["Volume"],
-        adj_close: quote[i]["Adj_Close"],
+    start_date = DateTime.now.to_date - 90
+    end_date = DateTime.now.to_date
+
+    histories_response = HQuote.quote(stock.symbol, start_date, end_date)
+    
+    histories_response.map do |response|
+       history = History.where(:date => response["Date"]).first_or_initialize
+       
+      history.assign_attributes(
+        stock_id: stock.id,
+        symbol: response["Symbol"],
+        date: response["Date"],
+        open: response["Open"],
+        high: response["High"],
+        low: response["Low"],
+        close: response["Close"],
+        volume: response["Volume"],
+        adj_close: response["Adj_Close"]
       )
-
+      
+      history.save!
+      
     end
-    
-  end    
+  end
 end

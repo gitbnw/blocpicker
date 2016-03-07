@@ -1,23 +1,23 @@
-<h1><%= @stock.name %></h1>
-<div class="row">
+<h1><%= @stock.symbol %> &nbsp;|&nbsp; <%= @stock.name %></h1>
+
   <div class="row" id="history_head">
-   <div class="col-md-1">Symbol</div>
-   <div class="col-md-1">Date</div>
-   <div class="col-md-1">Open</div>
-   <div class="col-md-2">High</div>
-   <div class="col-md-2">Low</div>
-   <div class="col-md-1">Close</div>   
+   <div class="col-md-2">Date</div>
+   <div class="col-md-2">Open</div>
+   <div class="col-md-1">High</div>
+   <div class="col-md-1">Low</div>
+   <div class="col-md-2">Close</div>   
    <div class="col-md-2">Volume</div>
-   <div class="col-md-1">Adj_Close</div>   
+   <div class="col-md-2">Adj_Close</div>   
   </div>    
-    <div class="col-md-8">
-      <% @stock.histories.each do |history| %>  
-        <%= render "history" %>
+    <div class="row">
+      <% @stock.histories.each_with_index do |history, i| %> 
+      
+        <%= render history, index: i %>
+        
       <% end %>
     
     </div>
-    <div class="col-md-4">
-    </div>
+
 </div>
 
 

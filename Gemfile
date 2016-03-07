@@ -70,3 +70,4 @@ gem 'gon'
 gem 'rabl-rails'
 
 gem 'rubocop'
+gem 'business_time'

@@ -5,15 +5,13 @@ class StocksController < ApplicationController
   def create
 
     @portfolio = Portfolio.find(params[:portfolio_id])
+    
+    puts stock_params
 
     @stock = Stock.find_or_initialize_by(stock_params) do |new_stock|
       puts 'new stock remote call'
       new_stock.class.quote_update(new_stock)
-      History.history_update(new_stock.symbol, start_date = DateTime.now.to_date - 365, end_date = DateTime.now.to_date)
     end
-
-
-    
     
     @portfolio_stock = @portfolio.stocks.where(stock_params).exists?
 
@@ -25,7 +23,10 @@ class StocksController < ApplicationController
     elsif @stock.save
 
       puts 'stock has saved and not in portfolio'
+      
       @portfolio.stocks << @stock
+      
+      History.find_or_complete(@stock)
 
       flash[:notice] = "Stock saved successfully."
 
