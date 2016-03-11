@@ -14,7 +14,6 @@
 ActiveRecord::Schema.define(version: 20160304191301) do
 
   create_table "histories", force: :cascade do |t|
-    t.integer  "stock_id"
     t.string   "symbol"
     t.date     "date"
     t.decimal  "open"
@@ -25,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160304191301) do
     t.decimal  "adj_close"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "stock_id"
   end
 
   create_table "portfolios", force: :cascade do |t|

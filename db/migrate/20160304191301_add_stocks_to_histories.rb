@@ -1,5 +1,5 @@
 class AddStocksToHistories < ActiveRecord::Migration
   def change
-    add_foreign_key :histories, :stocks
+    add_column :histories, :stock_id, :integer
   end
 end
