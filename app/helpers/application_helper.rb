@@ -19,7 +19,7 @@ module ApplicationHelper
   end
 
   def omniauth_icon_for provider
-    { github: "fa-github", openid: "fa-openid", google_oauth2: "fa-google" } [provider.to_sym] || provider.to_s
+    { github: "fa-github", openid: "fa-openid", google_oauth2: "google-logo" } [provider.to_sym] || provider.to_s
   end
 
   def resource_name
@@ -32,6 +32,10 @@ module ApplicationHelper
 
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
+  end
+  
+  def resource_class
+    devise_mapping.to
   end
 
 end

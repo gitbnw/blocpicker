@@ -56,7 +56,7 @@ refresh_portfolio = ->
   gon.watch 'expired_stocks_ids', refresh_quotes
 
 checkRefresh = ->
-  turbolinksSetInterval(refresh_portfolio, 100000)
+  turbolinksSetInterval(refresh_portfolio, 10000)
   return
 
 myStopFunction = ->

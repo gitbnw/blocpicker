@@ -4,9 +4,12 @@ class History < ActiveRecord::Base
   
   belongs_to :stock
 
-  default_scope { order('symbol ASC') }
+  default_scope { order('date desc') }
   
   scope :current, -> { where(date: DateTime.now.to_date - 90..DateTime.now.to_date) }
+  scope :freshest, -> { order(date: :desc)}
+  scope :oldest, -> { order(date: :asc)}  
+  scope :expired, -> {where(["date < ?", 90.days.ago])}
 
   def self.find_or_complete(stock)
     
