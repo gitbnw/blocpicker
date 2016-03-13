@@ -18,3 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+every :weekday, :at => '04:00 pm' do
+  rake "update:update_history"
+end

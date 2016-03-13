@@ -3,25 +3,24 @@
  <% if @stock.valid? && @portfolio_stock == false %>
 
     $list = $("<%= j render partial: "stocks/list", class: 'stockslist', locals: { stocks: @portfolio.stocks }  %>");
-    
+
     $(".js-stocks").hide().html($list).fadeIn("slow", function() {
-       $('#stock-<%= @stock.id %>') 
-       <!--.removeClass( "text-bold" ).addClass( "text-norm" );-->
+       $('#stock-<%= @stock.id %>')
+
        var c = $('#canvas-<%= @stock.id %>')[0]
-       show(c)
+      //  show(c)
     })
-    
+    $('.flash').prepend("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash.now[:notice] %></div>");
     $('.new-stock').html("<%= escape_javascript(render partial: 'stocks/form', locals: { portfolio: @portfolio, stock: Stock.new }) %>");
-   
+
  <% else %>
 
-   $('.flash').prepend("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:alert] %></div>");
+   $('.flash').prepend("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash.now[:alert] %></div>");
    $('.new-stock').html("<%= escape_javascript(render partial: 'stocks/form', locals: { portfolio: @portfolio, stock: Stock.new }) %>");
  <% end %>
-   
 
-   
+
+
   <% unless @portfolio.stocks.empty? %>
      $('.empty_head').remove()
   <% end %>
-  
