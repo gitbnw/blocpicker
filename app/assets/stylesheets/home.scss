@@ -3,10 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .google-logo {
-  display: block;
+    display: block !important;
   text-indent: -9999px;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   background-image: image-url('new-google-favicon.svg');
-  background-size: 16px 16px;
+  background-size: 18px 18px;
 }
