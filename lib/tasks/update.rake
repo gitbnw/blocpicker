@@ -1,3 +1,5 @@
+require 'resque/tasks'
+
 namespace :update do
   
   # desc "Update stock info by http request"
@@ -16,7 +18,7 @@ namespace :update do
   # end
   
   desc "Update history by http request"
-  task update_history: :environment do
+  task update_history_all: :environment do
 
     oldest_history = History.oldest.last
     old_date = oldest_history.date

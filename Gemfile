@@ -73,4 +73,7 @@ gem 'rabl-rails'
 gem 'rubocop'
 gem 'business_time'
 
+gem 'resque'
+gem 'redis', '~>3.2'
+
 

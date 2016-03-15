@@ -1,14 +1,14 @@
 
 
-      <span class="history-detail <%= 'bg-info' if index % 2 > 0 %>" id="<%= "history-#{history.id}" %>">
+      <span class="history-detail <%= 'bg-primary' if index % 2 > 0 %>" id="<%= "history-#{history.id}" %>">
         
         <div class="col-md-2 history_date "><%= history.date %></div>
-        <div class="col-md-2 history_open"><%= history.open %></div>
-        <div class="col-md-1 history_high"><%= history.high %></div>
+        <div class="col-md-2 history_open"><%= number_with_precision(history.open, precision: 2) %></div>
+        <div class="col-md-1 history_high"><%= number_with_precision(history.high, precision: 2)  %></div>
         
-        <div class="col-md-1 history_low"><%= history.low %></div>
-        <div class="col-md-2 history_close"><%= history.close %></div>
-        <div class="col-md-2 history_volume"><%= history.volume %></div>
-        <div class="col-md-2 history_adj_close"><%= history.adj_close %></div>
+        <div class="col-md-1 history_low"><%= number_with_precision(history.low, precision: 2) %></div>
+        <div class="col-md-2 history_close"><%= number_with_precision(history.close, precision: 2) %></div>
+        <div class="col-md-2 history_volume"><%= number_to_human(history.volume) %></div>
+        <div class="col-md-2 history_adj_close"><%= number_with_precision(history.adj_close, precision: 2) %></div>
         
       </span>

@@ -56,7 +56,8 @@ refresh_portfolio = ->
   gon.watch 'expired_stocks_ids', refresh_quotes
 
 checkRefresh = ->
-  turbolinksSetInterval(refresh_portfolio, 10000)
+  refresh_rate = window.refresh_rate
+  turbolinksSetInterval(refresh_portfolio, refresh_rate)
   return
 
 myStopFunction = ->
@@ -73,6 +74,7 @@ myStopFunction = ->
 
     $ myStopFunction
 
-@init_count = (@portfolio_id) ->
+@init_count = (@portfolio_id, @refresh_rate) ->
   window.portfolio_id = @portfolio_id
+  window.refresh_rate = @refresh_rate
   gon.watch 'myCount', @init_refresh
