@@ -2,7 +2,7 @@
 
       <span class="history-detail <%= 'bg-primary' if index % 2 > 0 %>" id="<%= "history-#{history.id}" %>">
         
-        <div class="col-md-2 history_date "><%= history.date %></div>
+        <div class="col-md-2 history_date "><%= history.date.to_formatted_s(:month_day_year) %></div>
         <div class="col-md-2 history_open"><%= number_with_precision(history.open, precision: 2) %></div>
         <div class="col-md-1 history_high"><%= number_with_precision(history.high, precision: 2)  %></div>
         

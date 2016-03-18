@@ -27,5 +27,7 @@ Rails.application.routes.draw do
   post '/stocks/refresh', to: 'stocks#refresh'
   
   root 'home#index'
+  
+  mount Resque::Server, :at => "/resque"
 
 end

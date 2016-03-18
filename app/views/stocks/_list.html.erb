@@ -1,49 +1,36 @@
  <% if stocks.empty?  %>
    <h4 class="empty_head">Portfolio is empty.  Please add some stocks.</h4>
   <% else %>
-  <div class = "row">
-  <div class="col-md-2 vcenter">Refresh: </div>
-  <div class="clock col-md-2"></div>
-  </div>
+  <!--<div class = "row">-->
+  <!--<div class="col-md-2 vcenter">Refresh: </div>-->
+  <!--<div class="clock col-md-2"></div>-->
+  <!--</div>-->
   <div class="row" id="list_head">
    <div class="col-md-1">Symbol</div>
-   <div class="col-md-2">Price</div>
+   <div class="col-md-1">Price</div>
    <div class="col-md-1">Change</div>
-   <div class="col-md-2">Percent</div>
+   <div class="col-md-1">Percent</div>
    <div class="col-md-2">Volume</div>
    <div class="col-md-2">Avg Dly Vol</div>
    <div class="col-md-1 tag-tooltip dotted" data-toggle="tooltip" data-placement="top" title="A fancy algorithm is telling you what to do.">Advice</div>
   </div>
   
-  <%= render stocks %>
+   <% stocks.each do |stock| %> 
+
+   <div class="js-stock row" id="<%= "stock-row-#{stock.id}" %>">
+     <%= render stock %>
+   </div>
+   <div class="js-chart row" id="<%= "chart-row-#{stock.id}" %>">
+     <%= render partial: 'stocks/chart', locals: { stock: stock } %>
+   </div>   
+   
+  <% end %>
   
 <script type="text/javascript">
-  var clock = $('.clock').FlipClock({
-  countdown: true,
-  clockFace: 'Counter'
-  });
-  clock.setTime(99)
-	setTimeout(function() {
-		setInterval(function() {
-			clock.decrement();
-		}, 1000);
-	});
 
-  
   var refresh_rate = 10000
-  // var someDate = new Date();
-  // var numberOfMStoAdd = refresh_rate;
-  // someDate.setTime(someDate.getTime() + numberOfMStoAdd); 
-  
+
   init_count($("#portfolio_id").val(), refresh_rate);
-
-  // $( "canvas" ).each(function( index, c ) {
-  //   show(c)
-  // })
-
- // $('#clock').countdown(someDate, function(event) {
- //    $(this).html(event.strftime('%S seconds'));
- //  });
 
 </script>
  <% end %>

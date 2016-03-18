@@ -26,7 +26,7 @@ class StocksController < ApplicationController
 
       @portfolio.stocks << @stock
 
-      History.find_or_complete(@stock)
+      Resque.enqueue(HistoryBuilder, @stock.id)
 
       flash.now[:notice] = "Stock saved successfully."
 

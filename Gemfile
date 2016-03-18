@@ -73,7 +73,7 @@ gem 'rabl-rails'
 gem 'rubocop'
 gem 'business_time'
 
-gem 'resque'
+gem 'resque', :require => "resque/server"
 gem 'redis', '~>3.2'
 
 

@@ -11,15 +11,7 @@ class History < ActiveRecord::Base
   scope :oldest, -> { order(date: :asc)}
   scope :expired, -> {where(["date < ?", 90.days.ago])}
 
-  @queue = :file_serve
-
-  def self.perform(stock_id)
-    stock = Stock.find(stock_id)
-    stock.create_history(stock.symbol)
-  end
-
   def self.find_or_complete(stock)
-
 
     start_date = DateTime.now.to_date - 90
     end_date = DateTime.now.to_date

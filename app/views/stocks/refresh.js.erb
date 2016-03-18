@@ -1,14 +1,29 @@
 <% @stocks.each do |stock| %>
 
+    var tick_color
+    var canvas = $('#canvas-<%= stock.id %>')[0]
+    var width = canvas.width;
+    var height = canvas.height;
+
+    <% if stock.tick == 'up' %>
+        tick_color = 'green'
+    <% elsif stock.tick == 'down' %>
+        tick_color = 'red'
+    <% else %>
+        tick_color = '#272B30'
+    <% end %>
+    
     $stock = $("<%= j render(stock) %>");
 
-    $jsstock = $('#stock-holder-<%= stock.id %>').parent()
+    $stockrow = $('#stock-row-<%= stock.id %>')
+
+    $stockrow.html($stock)
+
+    show(canvas, tick_color, width)
+
     
-    $jsstock.html($stock)
+<% end %>
 
-
-  <% end %>
-  
 
  <!-- var refresh_rate = 10000-->
  <!-- var someDate = new Date();-->

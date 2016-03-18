@@ -2,24 +2,21 @@
 <% @change_fraction = stock.change.to_f / (stock.lasttradepriceonly.to_f + stock.change.to_f) %>
 <% @change_percentage = number_to_percentage(@change_fraction * 100, precision: 2) %>
 <% @change_sign = @change_fraction >= 0 ? "+" : nil %>
-<% puts @change_sign %>
 <% @change_pct_string = @change_sign.to_s + @change_percentage.to_s %>
 <% @change_string = @change_sign.to_s + number_with_precision(stock.change, precision: 2).to_s %>
-<div class="media">
-  <div class="media-body">   
-    <div class="js-stock row">
+  
+
       <span class="stock-text transition-color transition-bg-color" id="<%= "stock-#{stock.id}" %>">
         <div class="col-md-1 stock_symbol"><%= link_to stock.symbol, stock_history_path(stock.id)%></div>
-        <div class="col-md-2 stock_ltpo stock_dynamic"><%= number_with_precision(stock.lasttradepriceonly, precision: 2) %></div>
+        <div class="col-md-1 stock_ltpo stock_dynamic"><%= number_with_precision(stock.lasttradepriceonly, precision: 2) %></div>
         <div class="col-md-1 stock_change stock_dynamic"><%= @change_string %></div>
-        <div class="col-md-2 stock_percent stock_dynamic"><%= @change_pct_string %></div>
+        <div class="col-md-1 stock_percent stock_dynamic"><%= @change_pct_string %></div>
         <div class="col-md-2 stock_volume stock_dynamic"><%= number_to_human(stock.volume) %></div>
         <div class="col-md-2 stock_avg_volume"><%= number_to_human(stock.averagedailyvolume) %></div>
-        <div class="col-md-1 stock_bounce stock_dynamic"><%= stock.bounce %></div>
+
       </span>
-    </div>
-   </div>   
-</div>
+
+
 
 <script>
 

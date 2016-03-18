@@ -44,6 +44,7 @@ module RemoteHelper
         quote = decoded["query"]["results"]["quote"]
 
         #Array.wrap to handle if single hash or multiple in array
+
         return Array.wrap(quote)
       else
         # this just raises the net/http response that was raised

@@ -1,5 +1,3 @@
-require 'resque/tasks'
-
 namespace :update do
   
   # desc "Update stock info by http request"

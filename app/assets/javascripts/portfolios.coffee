@@ -38,7 +38,7 @@ refresh_quotes = (stock_ids) ->
       data: {stock_ids, portfolio_id}
       dataType: "json"
       error: (jqXHR, textStatus, errorThrown) ->
-         $('body').append "AJAX Error: #{textStatus}"
+         console.log "AJAX Error: #{errorThrown}"
       success: (stocks_data, textStatus, jqXHR) ->
         url = "../stocks/refresh"
         $.ajax
@@ -47,9 +47,9 @@ refresh_quotes = (stock_ids) ->
           data: {stock_ids, portfolio_id}
           dataType: "script"        
           error: (jqXHR, textStatus, errorThrown) ->
-             $('body').append "AJAX 2 Error: #{textStatus}"
-             $('body').append "AJAX 2 Error: #{errorThrown}"
-          success: (stocks_html, textStatus, jqXHR) ->        
+            console.log "AJAX 2 Error: #{errorThrown}"
+          success: (stocks_html, textStatus, jqXHR) ->  
+
             
 
 refresh_portfolio = ->

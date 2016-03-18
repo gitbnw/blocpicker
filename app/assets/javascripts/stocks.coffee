@@ -12,10 +12,12 @@ canvasArr = []
     i++
   return canvasObj['gradi']
     
-@show = (canvas, tick_color = "white") ->
+@show = (canvas, tick_color = "#272B30", width) ->
+
   ctx = canvas.getContext('2d')
-  gradi = ctx.createLinearGradient(0, 0, 200, 0);
-  
+
+  gradi = ctx.createLinearGradient(0, 0, width, 0);
+
   find_canvasObj = $.grep canvasArr, (canvasObj, i) ->
     canvasObj["canvas"] == canvas 
   
@@ -24,7 +26,7 @@ canvasArr = []
     canvasObj['gradi'] = gradi
     canvasObj['canvas'] = canvas
     canvasObj['ArrColor'] = Array.apply(null, Array(10)).map ->
-      'white'
+      '#272B30'
       
     canvasArr.push(canvasObj)
     this_canvasObj = canvasObj
@@ -35,7 +37,7 @@ canvasArr = []
   this_canvasObj['ArrColor'].pop()
   this_canvasObj['ArrColor'].unshift(tick_color)
   ctx.fillStyle = colorize(this_canvasObj);
-  ctx.fillRect(0,0,200,14); 
+  ctx.fillRect(0,0,width,24); 
 
 $(document).on 'ready page:change', ->
   $('.tag-tooltip').tooltip()

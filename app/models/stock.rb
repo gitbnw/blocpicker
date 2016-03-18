@@ -13,11 +13,9 @@ class Stock < ActiveRecord::Base
   scope :oldest, -> { order(updated_at: :desc)}
   scope :expired, -> {where(["stocks.updated_at < ?", 6.seconds.ago])}
 
-  def async_create_archive(symbol)
-    Resque.enqueue(History, self.id, symbol)
-  end
-
   def self.quote_update(stocks)
+
+    
     stocks = Array.wrap(stocks)
 
     symbol_array = stocks.map(&:symbol)
@@ -41,8 +39,10 @@ class Stock < ActiveRecord::Base
         volume: quote[i]["Volume"],
         stockexchange: quote[i]["StockExchange"]
       )
-
+    
     end
+    
+    
 
   end
 

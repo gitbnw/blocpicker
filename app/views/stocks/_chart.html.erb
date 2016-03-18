@@ -1,1 +1,4 @@
-<div class="col-md-2 stock_canvas"><%=content_tag :canvas, 'canvas', id: "canvas-#{stock.id}", class: 'tick_chart', width: '200', height: '8', style: 'border:1px solid #c3c3c3' %></div>
+
+<div class="col-md-12 stock_canvas">
+    <canvas class="tick_chart", width=1140, height=24, id="<%= "canvas-#{stock.id}" %>">canvas</canvas>
+</div>
