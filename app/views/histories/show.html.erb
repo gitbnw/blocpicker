@@ -1,5 +1,7 @@
 <h1><%= @stock.symbol %> &nbsp;|&nbsp; <%= @stock.name %></h1>
+  <div class="row" id="history_chart">
 
+  </div>
   <div class="row" id="history_head">
    <div class="col-md-2">Date</div>
    <div class="col-md-2">Open</div>
@@ -20,4 +22,42 @@
 
 </div>
 
+<script>
+<% @series_values = @histories.map{|history| [history.date.to_formatted_s(:month_day_year), number_with_precision(history.close, :precision => 2).to_f]}.reverse!.to_json %>
+<% @scalex_pluck = @histories.pluck(:date) %>
+<% @scalex_sort = @scalex_pluck.sort %>
+<% @scalex_first = @scalex_sort.first %>
+<% @scalex_map = @scalex_pluck.map{|date| date} %>
+<% @scalex_value = "#{@scalex_first}:#{@scalex_first + 90.days}" %> 
+
+var chartData={
+"type":"line",
+"background-color":"#272B30",
+  "utc":true,       
+  "timezone":-8,   
+  "plotarea":{
+    "background-color": "transparent",
+    "adjust-layout":true
+  },    
+"scale-x":{
+    "label":{   
+      "text":"Trading Date"
+    },
+    "transform":{                
+            type:"date",
+            all:"%d %M %Y"
+    }    
+  },    
+"series":[  
+    { "values": <%= raw @series_values %>},
+]
+};
+zingchart.render({ // Render Method[3]
+id:'history_chart',
+data:chartData,
+height:400,
+width:1140
+});
+    
+</script>
 
