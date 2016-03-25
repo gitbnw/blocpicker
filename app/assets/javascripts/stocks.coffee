@@ -6,13 +6,13 @@ canvasArr = []
 
 @colorize = (canvasObj) ->
   i = 0
-  while i < canvasObj['ArrColor'].length
-    stop = i / canvasObj['ArrColor'].length
-    canvasObj['gradi'].addColorStop(stop, canvasObj['ArrColor'][i])
+  while i < canvasObj['colorArray'].length
+    stop = i / canvasObj['colorArray'].length
+    canvasObj['gradi'].addColorStop(stop, canvasObj['colorArray'][i])
     i++
   return canvasObj['gradi']
     
-@show = (canvas, tick_color = "#272B30", width) ->
+@show = (canvas, colorArray, width) ->
 
   ctx = canvas.getContext('2d')
 
@@ -21,21 +21,15 @@ canvasArr = []
   find_canvasObj = $.grep canvasArr, (canvasObj, i) ->
     canvasObj["canvas"] == canvas 
   
-  if jQuery.isEmptyObject(find_canvasObj) #does not exist yet
-    canvasObj = {}
-    canvasObj['gradi'] = gradi
-    canvasObj['canvas'] = canvas
-    canvasObj['ArrColor'] = Array.apply(null, Array(10)).map ->
-      '#272B30'
-      
-    canvasArr.push(canvasObj)
-    this_canvasObj = canvasObj
-  else
-    this_canvasObj = find_canvasObj[0]
-  
+  canvasObj = {}
+  canvasObj['gradi'] = gradi
+  canvasObj['canvas'] = canvas
+  canvasObj['colorArray'] = colorArray
+    
+  canvasArr.push(canvasObj)
+  this_canvasObj = canvasObj
+
   this_canvasObj['gradi'] = gradi
-  this_canvasObj['ArrColor'].pop()
-  this_canvasObj['ArrColor'].unshift(tick_color)
   ctx.fillStyle = colorize(this_canvasObj);
   ctx.fillRect(0,0,width,24); 
 

@@ -18,13 +18,15 @@ class Api::V1::StocksController < Api::V1::BaseController
   def price_change_assign(stocks)
     stocks.each do |stock|
       @change = 100 * ((stock.lasttradepriceonly / stock.lasttradepriceonly ) - (stock.lasttradepriceonly_was / stock.lasttradepriceonly))
-      
+
+      stock.ticks.pop if stock.ticks.length == 10
+    
       if @change > 0.05
-        stock[:tick] = "up"
+        stock[:ticks].unshift('green')
       elsif @change < -0.05
-        stock[:tick] = "down"
+        stock[:ticks].unshift('red')
       else
-        stock[:tick] = "none"
+        stock[:ticks].unshift('#272B30')
       end
 
     end

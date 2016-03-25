@@ -31,12 +31,12 @@
         </div>
      <div class="flash">
          
-     <% if flash.now[:notice] %>
+     <% if flash[:notice] %>
        <div class="alert alert-success">
          <button type="button" class="close" data-dismiss="alert">&times;</button>
          <%= flash.now[:notice] %>
        </div>
-     <% elsif flash.now[:alert] %>
+     <% elsif flash[:alert] %>
        <div class="alert alert-danger">
          <button type="button" class="close" data-dismiss="alert">&times;</button>
          <%= flash.now[:alert] %>
@@ -44,25 +44,14 @@
      <% elsif flash[:alert] %>
        <div class="alert alert-warning">
          <button type="button" class="close" data-dismiss="alert">&times;</button>
-         <%= flash[:alert] %>
+         <%= flash.now[:alert] %>
        </div>
      <% end %>
-  <% if flash[:notice] %>
-    <p id="flash_notice" class="messages notice"><%= flash[:notice] %></p>
-    <%= javascript_tag "$('#flash_notice').effect('highlight',{},1000);" %>
-  <% end %>
-
-  <%# if flash[:error] || flash[:errors] %>
-    <!--<p id="flash_errors" class="messages errors">-->
-        <%#= flash[:error] || flash[:errors] %>
-    <!--</p>-->
-    <%#= javascript_tag "$('#flash_errors').effect('highlight',{},1000);" %>
-  <%# end %>
-
-  <%# flash[:error] = flash[:errors] = flash[:notice] = nil %>
+     
   
      </div>
     <%= yield %>
+
 </body>
 
 </html>

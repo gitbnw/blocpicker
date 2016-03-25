@@ -13,13 +13,18 @@
         <div class="col-md-1 stock_percent stock_dynamic"><%= @change_pct_string %></div>
         <div class="col-md-2 stock_volume stock_dynamic"><%= number_to_human(stock.volume) %></div>
         <div class="col-md-2 stock_avg_volume"><%= number_to_human(stock.averagedailyvolume) %></div>
-
+        <div class="col-md-4"><canvas class="tick_chart" width=360 height=24 id="<%= "canvas-#{stock.id}" %>">canvas</canvas></div>
       </span>
 
 
 
 <script>
+    var canvas = $('#canvas-<%= stock.id %>')[0]
+    var width = canvas.width;
+    var colorArray = <%= raw stock.ticks.to_json %>
 
+    show(canvas, colorArray, width)
+    
     
     $( ".stock_change, .stock_percent" ).each(function(index, d) {
       

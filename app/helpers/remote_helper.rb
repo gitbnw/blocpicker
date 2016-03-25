@@ -12,9 +12,9 @@ module RemoteHelper
   
   class Quote < RemoteRequest
 
-    attr_accessor :averagedailyvolume, :change, :dayslow, :dayshigh, :yearlow, :yearhigh, :marketcapitalization, :lasttradepriceonly, :daysrange, :name, :symbol, :volume, :stockexchange
+    attr_accessor :averagedailyvolume, :change, :dayslow, :dayshigh, :yearlow, :yearhigh, :marketcapitalization, :lasttradepriceonly, :daysrange, :name, :symbol, :volume, :stockexchange, :lasttradedate, :lasttradetime
 
-    def initialize(averagedailyvolume, change, dayslow, dayshigh, yearlow, yearhigh, marketcapitalization, lasttradepriceonly, daysrange, name, symbol, volume, stockexchange)
+    def initialize(averagedailyvolume, change, dayslow, dayshigh, yearlow, yearhigh, marketcapitalization, lasttradepriceonly, daysrange, name, symbol, volume, stockexchange, lasttradedate, lasttradetime)
       self.averagedailyvolume = averagedailyvolume
       self.change = change
       self.dayslow = dayslow
@@ -28,11 +28,13 @@ module RemoteHelper
       self.symbol = symbol
       self.volume = volume
       self.stockexchange = stockexchange
+      self.lasttradedate = lasttradedate
+      self.lasttradetime = lasttradetime
     end
 
     def self.find(stock_symbol)
 
-      base_query = "select * from yahoo.finance.quote where symbol in ( '#{stock_symbol}' )"
+      base_query = "select * from yahoo.finance.quotes where symbol in ( '#{stock_symbol}' )"
       query = URI.encode(base_query) << "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
 
       response = get("?q=" << query)
@@ -42,6 +44,8 @@ module RemoteHelper
         decoded = JSON.parse response.body
 
         quote = decoded["query"]["results"]["quote"]
+        
+        puts quote
 
         #Array.wrap to handle if single hash or multiple in array
 

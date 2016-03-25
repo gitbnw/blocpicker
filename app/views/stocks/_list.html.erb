@@ -12,7 +12,7 @@
    <div class="col-md-1">Percent</div>
    <div class="col-md-2">Volume</div>
    <div class="col-md-2">Avg Dly Vol</div>
-   <div class="col-md-1 tag-tooltip dotted" data-toggle="tooltip" data-placement="top" title="A fancy algorithm is telling you what to do.">Advice</div>
+   <div class="col-md-1 tag-tooltip" data-toggle="tooltip" data-placement="top" title="A fancy algorithm is telling you what to do.">Ticks</div>
   </div>
   
    <% stocks.each do |stock| %> 
@@ -20,10 +20,7 @@
    <div class="js-stock row" id="<%= "stock-row-#{stock.id}" %>">
      <%= render stock %>
    </div>
-   <div class="js-chart row" id="<%= "chart-row-#{stock.id}" %>">
-     <%= render partial: 'stocks/chart', locals: { stock: stock } %>
-   </div>   
-   
+
   <% end %>
   
 <script type="text/javascript">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304191301) do
+ActiveRecord::Schema.define(version: 20160322203428) do
 
   create_table "histories", force: :cascade do |t|
     t.string   "symbol"
@@ -65,8 +65,10 @@ ActiveRecord::Schema.define(version: 20160304191301) do
     t.decimal  "lasttradepriceonly"
     t.string   "daysrange"
     t.string   "stockexchange"
-    t.string   "tick"
+    t.string   "ticks"
     t.string   "bounce"
+    t.string   "lasttradedate"
+    t.string   "lasttradetime"
   end
 
   create_table "users", force: :cascade do |t|

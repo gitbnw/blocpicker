@@ -1,4 +1,21 @@
 
-<div class="col-md-12 stock_canvas">
-    <canvas class="tick_chart", width=1140, height=24, id="<%= "canvas-#{stock.id}" %>">canvas</canvas>
+<div class="col-md-4 stock_canvas">
+    <canvas class="tick_chart" width=380 height=24 id="<%= "canvas-#{stock.id}" %>">canvas</canvas>
 </div>
+<script>
+    var canvas = $('#canvas-<%= stock.id %>')[0]
+    var width = canvas.width;
+    var height = canvas.height;
+    var colorArray = <%= raw stock.ticks.to_json %>
+    
+    console.log(colorArray)
+
+    $stock = $("<%= j render(stock) %>");
+
+    $stockrow = $('#stock-row-<%= stock.id %>')
+
+    $stockrow.html($stock)
+
+    show(canvas, colorArray, width)
+    
+</script>

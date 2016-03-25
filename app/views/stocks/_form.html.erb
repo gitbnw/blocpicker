@@ -1,5 +1,5 @@
 <div>
-  <%= form_for [portfolio, stock], remote: true do |f| %>
+  <%= form_for [portfolio, stock], :class => 'stock-create-ajax', remote: true do |f| %>
     <div class="form-inline">
     <div class="form-group">      
     <%= f.text_field :symbol,
