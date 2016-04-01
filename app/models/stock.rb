@@ -1,6 +1,6 @@
 class Stock < ActiveRecord::Base
 
-  include RemoteHelper
+  include Yahoo
 
   #has_many :picks
   has_and_belongs_to_many :portfolios, -> { uniq } #, through: :picks
@@ -12,7 +12,7 @@ class Stock < ActiveRecord::Base
   default_scope { order('symbol ASC') }
   scope :freshest, -> { order(updated_at: :asc)}
   scope :oldest, -> { order(updated_at: :desc)}
-  scope :expired, -> {where(["stocks.updated_at < ?", 6.seconds.ago])}
+  scope :expired, -> {where(["stocks.updated_at < ?", 60.seconds.ago])}
   
   def self.apply_update(stock, quote)
     
@@ -38,33 +38,15 @@ class Stock < ActiveRecord::Base
   
   def self.quote_update(stocks)
 
-    stocks = Array.wrap(stocks)
+    @stocks = Array.wrap(stocks)
+    @symbol_array = @stocks.map(&:symbol)
+    @quote = Yahoo::YQLFinance.new.find_quote(@symbol_array).output
+    @quotes = Array.wrap(@quote)
 
-    symbol_array = stocks.map(&:symbol)
-
-    quote = Quote.find(symbol_array)
-
-    stocks.each_with_index do |stock, i|
-      
-    if !stock.id.nil?
-
-      # logger.debug "debug this idiot #{quote[i]["LastTradeTime"]}"
-      # logger.debug "debug this idiot #{stock.lasttradetime}"
-      # logger.debug "debug this idiot #{stock.lasttradetime} is less than #{quote[i]["LastTradeTime"]} : #{stock.lasttradetime < quote[i]["LastTradeTime"]}"
-      # logger.debug "debug this idiot #{quote[i]["LastTradeDate"]}"
-      # logger.debug "debug this idiot #{stock.lasttradedate}"
-      # logger.debug "debug this idiot #{stock.lasttradedate} is less than #{quote[i]["LastTradeDate"]} : #{stock.lasttradedate < quote[i]["LastTradeDate"]}"      
-    end
-      
-      @date = Date.strptime(quote[i]["LastTradeDate"], '%m/%d/%Y')
-
-      Stock.apply_update(stock, quote[i]) if stock.id.nil? || stock.lasttradedate <= quote[i]["LastTradeDate"] && stock.lasttradetime < quote[i]["LastTradeTime"]
-      
+    @stocks.each_with_index do |stock, i|
+      Stock.apply_update(stock, @quotes[i]) if stock.id.nil? || stock.lasttradedate <= @quotes[i]["LastTradeDate"] && stock.lasttradetime < @quotes[i]["LastTradeTime"]
     end
     
-    
-
   end
-
 
 end

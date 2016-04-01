@@ -1,6 +1,6 @@
 class StocksController < ApplicationController
 
-  include RemoteHelper
+  include Yahoo
 
   def create
 

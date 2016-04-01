@@ -59,6 +59,8 @@ gem 'bootstrap-sass', '~> 3.3'
 
 gem 'font-awesome-sass'
 
+gem 'oauth'
+
 gem 'omniauth'
 
 gem 'omniauth-google-oauth2'

@@ -1,6 +1,6 @@
 class History < ActiveRecord::Base
 
-  include RemoteHelper
+  include Yahoo
 
   belongs_to :stock
 
@@ -12,14 +12,14 @@ class History < ActiveRecord::Base
   scope :expired, -> {where(["date < ?", 90.days.ago])}
 
   def self.find_or_complete(stock)
-
+    @symbol = stock.symbol
     start_date = DateTime.now.to_date - 90
     end_date = DateTime.now.to_date
 
-    histories_response = HQuote.quote(stock.symbol, start_date, end_date)
+    @histories_response = Yahoo::YQLFinance.new.find_hquote(@symbol, start_date, end_date).output
 
-    histories_response.map do |response|
-       history = History.where(:date => response["Date"]).where(:symbol => response["Symbol"]).first_or_initialize
+    @histories_response.map do |response|
+      history = History.where(:date => response["Date"]).where(:symbol => response["Symbol"]).first_or_initialize
 
       history.assign_attributes(
         stock_id: stock.id,

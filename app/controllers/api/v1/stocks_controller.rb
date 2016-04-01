@@ -1,6 +1,7 @@
 class Api::V1::StocksController < Api::V1::BaseController
 
-  include RemoteHelper
+  include Yahoo
+  
   include ActionView::Helpers::NumberHelper
 
   def refresh
