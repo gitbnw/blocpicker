@@ -20,12 +20,16 @@
           <% else %>
             <%= link_to "Register".html_safe, new_registration_path(:user), class: "btn btn-default" %>
               <%- resource_class.omniauth_providers.each do |provider| %>
-
                 <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-default" do %>
-
+                
                   <% content_tag(:i, nil, class: "fa fa-2x #{omniauth_icon_for(provider)}") %>
                 <% end %>
               <% end -%>
+           
+            <%= link_to "http://www.yahoo.com", class: 'btn btn-default' do %>
+              Test Drive <i class="fa fa-car"></i>
+            <% end %>
+
           <% end %>
         </ul>
         </div>

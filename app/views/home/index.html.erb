@@ -1,16 +1,25 @@
-
+<div class="container">
   <h2>Portfolios</h2>
+  <div class="row portfolio-container panel">
+    <div class="col-md-12">
+      <% if @user.portfolios.count == 0 %>
+        <p class="filler-text">No portfolios.  How do you expect to get rich?  Add one now!</p>
+      <% else %>
+        <%= render @user.portfolios %>
+      <% end %>
+    </div>
+  </div>
   <div class="row">
-    <div class="col-md-6">
-  
-        
-          <%= render @user.portfolios %>
-  
-  
-  
+    <div class="col-md-2">
+      <%= link_to "Create Portfolio", new_portfolio_path(@portfolio), class: 'btn btn-success' %>  
     </div>
     <div class="col-md-2">
-  
-        <%= link_to "Add", new_portfolio_path(@portfolio), class: 'btn btn-success' %>
-  
+      <%= link_to "View Portfolios", new_portfolio_path(@portfolio), class: 'btn btn-info' %>  
+    </div>
   </div>
+    
+</div>
+<div class="container">
+  <h2>Alerts</h2>
+</div>
+  

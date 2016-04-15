@@ -18,6 +18,11 @@
  @import "bootstrap_slate";
  @import "font-awesome-sprockets";
  @import "font-awesome";
+ 
+ .navbar .nav {
+line-height: 50px;
+margin-left: 8px;
+}
 
 .devise_links {
  margin-left: -2px;

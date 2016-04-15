@@ -2,7 +2,8 @@ class History < ActiveRecord::Base
 
   include Yahoo
 
-  belongs_to :stock
+  belongs_to :user
+  has_one :stock
 
   default_scope { order('date desc') }
 

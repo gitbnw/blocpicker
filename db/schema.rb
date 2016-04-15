@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322203428) do
+ActiveRecord::Schema.define(version: 20160401160332) do
+
+  create_table "alerts", force: :cascade do |t|
+    t.date     "start"
+    t.date     "expire"
+    t.decimal  "price_target"
+    t.decimal  "price_initial"
+    t.integer  "user_id"
+    t.integer  "stock_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "alerts", ["stock_id"], name: "index_alerts_on_stock_id"
+  add_index "alerts", ["user_id"], name: "index_alerts_on_user_id"
 
   create_table "histories", force: :cascade do |t|
     t.string   "symbol"

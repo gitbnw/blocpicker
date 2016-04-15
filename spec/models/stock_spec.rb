@@ -12,8 +12,8 @@ RSpec.describe Stock, type: :model do
       expect(stock).to respond_to(:name)
     end
 
-    it 'should respond to price' do
-      expect(stock).to respond_to(:price)
+    it 'should respond to lasttradepriceonly' do
+      expect(stock).to respond_to(:lasttradepriceonly)
     end
 
     it 'should respond to change' do

@@ -41,9 +41,6 @@ module Yahoo
       HQuote.new query_api(history_url)
     end    
 
-    def find sql
-      query_api(sql)
-    end
   end
  
   class Quote
