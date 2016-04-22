@@ -1,0 +1,20 @@
+<div>
+  <%= form_for [user, portfolio], :class => 'portfolio-create-ajax inline', remote: true do |f| %>
+
+  <div class="form-inline">
+
+    <div class="col-md-2 form-group">
+      <%= f.text_field :name,
+                     class: 'form-control inline',
+                     value: "" %>
+      <br/>
+      <%= f.label :name, class: 'inline' %>
+    </div>
+    <div class="col-md-4 form-group">
+      <%= button_to "Add portfolio", user_portfolios_path(@user, @portfolio), class: 'btn btn-success inline pull-left', method: :delete, disabled: true  %>
+      <%= button_to "Delete portfolios", user_portfolios_path(@user, @portfolio), class: 'btn btn-danger inline', method: :delete, disabled: true %>
+    </div>
+    <% end %>
+  </div>
+</div>
+</div>

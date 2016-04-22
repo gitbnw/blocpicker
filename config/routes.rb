@@ -6,17 +6,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     resources :alerts, only: [:create, :show, :destroy]
+    resources :portfolios do
+      resources :stocks, only: [:create, :show]
+    end
   end
 
-  
-
-  resources :portfolios do
-    get 'intraday', to: 'portfolios#intraday'
-    get 'value', to: 'portfolios#value'
-    resources :stocks, only: [:create, :show]
-  end
-  
-  resources :stocks, only: [] do
+  resources :stocks do
     get 'history', to: 'histories#show'
   end
 
@@ -26,13 +21,13 @@ Rails.application.routes.draw do
         post '/stocks/get_quote', to: 'stocks#get_quote'
      end
   end
-  
+
   post '/stocks/refresh', to: 'stocks#refresh'
   post '/alerts/initial_price', to: 'alerts#initial_price'
-  
-  
+
+
   root 'home#index'
-  
+
   mount Resque::Server, :at => "/resque"
 
 end
