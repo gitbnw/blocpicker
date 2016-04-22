@@ -1,0 +1,4 @@
+ <% unless @price.nil? %>
+    $("#new_alert :input").not("#alert_price_initial").prop( "disabled", false )
+    $("#alert_price_initial").val(<%= j number_with_precision(@price, precision: 2) %>)
+ <% end %>

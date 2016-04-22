@@ -11,12 +11,18 @@
   background-size: 18px 18px;
 }
 
-.portfolio-container {
+.home-container {
     min-height: 200px;
     padding: 8px;
 }
-
+.btn-row {
+    margin: 8px;
+}
 .filler-text {
-    vertical-align: middle;
+    line-height: 200px;
     text-align:center;
+}
+
+.home .btn {
+    min-width: 130px;
 }

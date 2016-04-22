@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   has_many :portfolios
   has_many :stocks, through: :portfolios
+  has_many :alerts
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

@@ -4,9 +4,11 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :alerts, only: [:create, :show, :destroy]
+  end
 
-  resources :picks, only: [:show]
+  
 
   resources :portfolios do
     get 'intraday', to: 'portfolios#intraday'
@@ -21,10 +23,13 @@ Rails.application.routes.draw do
   namespace :api do
      namespace :v1 do
         post '/stocks/refresh', to: 'stocks#refresh'
+        post '/stocks/get_quote', to: 'stocks#get_quote'
      end
   end
   
   post '/stocks/refresh', to: 'stocks#refresh'
+  post '/alerts/initial_price', to: 'alerts#initial_price'
+  
   
   root 'home#index'
   

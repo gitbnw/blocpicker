@@ -1,0 +1,29 @@
+ <% if @alert.valid? %>
+
+    $list = $("<%= j render partial: "alerts/list", class: 'alertslist', locals: { alerts: @user.alerts }  %>");
+
+    $(".js-alerts").hide().html($list).fadeIn("slow", function() {
+       $('#alert-<%= @alert.id %>')
+
+       var c = $('#canvas-<%= @alert.id %>')[0]
+      //  show(c)
+    })
+    
+    $('.flash').prepend("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash.now[:notice] %></div>");
+    $('.new-alert').html("<%= escape_javascript(render partial: 'alerts/form', locals: { user: @user, alert: Alert.new }) %>");
+    
+      $('.alert').delay(2000).fadeOut(500, function() {
+        $('.alert').alert('close');
+      });
+
+ <% else %>
+
+   $('.flash').prepend("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash.now[:alert] %></div>");
+   $('.new-alert').html("<%= escape_javascript(render partial: 'alerts/form', locals: { user: @user, alert: Alert.new }) %>");
+ <% end %>
+
+
+
+  <% unless @user.alerts.empty? %>
+     $('.empty_head').remove()
+  <% end %>

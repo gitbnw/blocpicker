@@ -22,6 +22,14 @@ class AlertsController < ApplicationController
       render :new
     end
 
-  end  
+  end 
   
+  def initial_price
+    @price = params[:price].to_f
+    respond_to do |format|
+      format.html
+      format.js
+    end
+    
+  end
 end

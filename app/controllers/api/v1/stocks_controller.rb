@@ -12,6 +12,12 @@ class Api::V1::StocksController < Api::V1::BaseController
     render json: @stocks
   end
   
+  def get_quote
+    @symbol = params[:symbol]
+    @quote = Yahoo::YQLFinance.new.find_quote(@symbol).output
+    render json: @quote
+  end
+  
   # def refresh_history(stocks = Stock.all)
   #   @history = History.history_update(stocks, start_date, end_date)
   # end

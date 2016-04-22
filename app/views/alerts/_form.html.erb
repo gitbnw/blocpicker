@@ -1,0 +1,45 @@
+<div>
+  <%= form_for [user, alert], :class => 'alert-create-ajax inline', remote: true do |f| %>
+
+    <div class="form-inline">
+
+    <div class="col-md-2 form-group">
+    <%= f.text_field :symbol,
+                     class: 'form-control inline',
+                     value: "" %>
+                     <br />
+    <%= f.label :symbol, class: 'inline' %>  
+    </div>
+    <div class="col-md-2 form-group">
+    <%= f.text_field :price_initial,
+                     class: 'form-control inline',
+                     disabled: true,
+                     value: "" %>
+                     <br />
+    <%= f.label "initial price", class: 'inline' %>
+    </div>
+    <div class="col-md-2 form-group">
+    <%= f.number_field :price_target,
+                     class: 'form-control inline',
+                     disabled: true,
+                     value: "" %>
+                     <br />
+    <%= f.label "target price", class: 'inline' %>                 
+    </div>                 
+    <div class="col-md-2 form-group">                 
+    <%= f.datetime_field :expire,
+                     class: 'form-control inline',
+                     disabled: true,
+                     value: "" %>
+                     <br />
+    <%= f.label "expiration", class: 'inline' %>                    
+    </div>   
+    <div class="col-md-4 form-group"> 
+    <%= button_to "Add Alert", user_alerts_path(@user, @alert), class: 'btn btn-success inline pull-left', method: :delete, disabled: true  %>
+    <%= button_to "Delete Alerts", user_alerts_path(@user, @alert), class: 'btn btn-danger inline', method: :delete, disabled: true %> 
+    </div>
+    <% end %>
+</div>
+  </div>
+  </div>
+  
