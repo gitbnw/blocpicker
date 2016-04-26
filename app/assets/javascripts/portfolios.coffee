@@ -78,3 +78,12 @@ myStopFunction = ->
   window.portfolio_id = @portfolio_id
   window.refresh_rate = @refresh_rate
   gon.watch 'myCount', @init_refresh
+
+$(document).on "page:change", ->
+    $('#portfolio_name').keyup ->
+        name = $('#portfolio_name').val()
+        if name.length > 0
+            $('#new_portfolio .btn-success').prop( "disabled", false )
+        else
+            $('#new_portfolio .btn-success').prop( "disabled", true )
+      return

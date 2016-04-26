@@ -1,0 +1,27 @@
+ <% if @portfolio.valid? %>
+
+    $list = $("<%= j render partial: "portfolios/list", class: 'portfolioslist', locals: { portfolios: @user.portfolios }  %>");
+
+    $(".js-portfolios").hide().html($list).fadeIn("slow", function() {
+       $('#portfolio-<%= @portfolio.id %>')
+
+    })
+    
+    $('.flash').prepend("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash.now[:notice] %></div>");
+    $('.new-portfolio').html("<%= escape_javascript(render partial: 'portfolios/form', locals: { user: @user, portfolio: Portfolio.new }) %>");
+    
+      $('.alert').delay(2000).fadeOut(500, function() {
+        $('.alert').alert('close');
+      });
+
+ <% else %>
+
+   $('.flash').prepend("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash.now[:alert] %></div>");
+   $('.new-portfolio').html("<%= escape_javascript(render partial: 'portfolios/form', locals: { user: @user, portfolio: Portfolio.new }) %>");
+ <% end %>
+
+
+
+  <% unless @user.portfolios.empty? %>
+     $('.empty_head').remove()
+  <% end %>

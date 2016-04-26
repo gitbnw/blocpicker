@@ -3,7 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-
+.empty {
+    color: 'gray';
+}
 .top-buffer { 
     margin-top:20px;
 }
@@ -19,4 +21,12 @@
     line-height: 24px;
     margin: 11px;
     float: none;
+}
+
+#new_portfolio .button_to {
+    text-align:center;
+}
+#new_portfolio label {
+    margin: 0 auto;
+    text-align:left;
 }

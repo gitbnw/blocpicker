@@ -16,21 +16,29 @@
 <% end %>
 <% @total_pct_string = @total_change_sign.to_s + @total_percentage.to_s %>
 
-<div class="row">
+
   <div class="col-md-3">
     <div class="media">
       <div class="media-body">
         <h4 class="media-heading">
+
           <%= link_to portfolio.name, portfolio_path(portfolio.id) %>
+          
         </h4>
       </div>
     </div>
   </div>
+  <% if portfolio.stocks.present?  %>
   <div class="col-md-3 <%= "#{@condition_class}" %>">
     <%= @total_pct_string %>
   </div>
   <div class="col-md-3">
     <% @symbols = @stocks.pluck(:symbol) %>
     <%= @symbols.join(",") %>
-  </div>  
-</div>
+  </div>   
+
+  <% else %>
+  <div class="col-md-3 empty">
+    (empty)
+  </div>   
+  <% end  %>

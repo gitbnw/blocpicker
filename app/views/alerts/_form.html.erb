@@ -1,45 +1,41 @@
 <div>
   <%= form_for [user, alert], :class => 'alert-create-ajax inline', remote: true do |f| %>
 
-    <div class="form-inline">
+    <div class="form-group">
 
-    <div class="col-md-2 form-group">
-    <%= f.text_field :symbol,
-                     class: 'form-control inline',
-                     value: "" %>
-                     <br />
-    <%= f.label :symbol, class: 'inline' %>  
+    <div class="col-md-2">
+      <%= f.text_field :symbol,
+                       class: 'form-control',
+                       value: "" %>
+      <%= f.label :symbol %>  
     </div>
-    <div class="col-md-2 form-group">
-    <%= f.text_field :price_initial,
-                     class: 'form-control inline',
-                     disabled: true,
-                     value: "" %>
-                     <br />
-    <%= f.label "initial price", class: 'inline' %>
+    <div class="col-md-2">
+      <%= f.text_field :price_initial,
+                       class: 'form-control',
+                       disabled: true,
+                       value: "" %>
+      <%= f.label "initial price"%>
     </div>
-    <div class="col-md-2 form-group">
-    <%= f.number_field :price_target,
-                     class: 'form-control inline',
-                     disabled: true,
-                     value: "" %>
-                     <br />
-    <%= f.label "target price", class: 'inline' %>                 
-    </div>                 
-    <div class="col-md-2 form-group">                 
+    <div class="col-md-2">
+      <%= f.number_field :price_target,
+                       class: 'form-control',
+                       disabled: true,
+                       value: "" %>
+      <%= f.label "target price"%>                 
+    </div>          
+    
+    <div class="col-md-2">                 
     <%= f.datetime_field :expire,
-                     class: 'form-control inline',
+                     class: 'form-control',
                      disabled: true,
                      value: "" %>
-                     <br />
-    <%= f.label "expiration", class: 'inline' %>                    
+    <%= f.label "expiration"%>                    
     </div>   
-    <div class="col-md-4 form-group"> 
-    <%= button_to "Add Alert", user_alerts_path(@user, @alert), class: 'btn btn-success inline pull-left', method: :delete, disabled: true  %>
-    <%= button_to "Delete Alerts", user_alerts_path(@user, @alert), class: 'btn btn-danger inline', method: :delete, disabled: true %> 
+    <div class="col-md-4"> 
+    <%= button_to "Add Alert", new_user_alert_path(@user, @alert), class: 'btn btn-success pull-left', disabled: true  %>
+    <%= button_to "Delete Alerts", user_alerts_path(@user, @alert), class: 'btn btn-danger', method: :delete, disabled: true %> 
     </div>
     <% end %>
 </div>
   </div>
   </div>
-  

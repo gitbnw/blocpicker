@@ -10,17 +10,21 @@ class PortfoliosController < ApplicationController
 
     @portfolio = Portfolio.new
     @portfolio.name = params[:portfolio][:name]
+    @user = current_user
     @portfolio.user_id = current_user.id
 
     if @portfolio.save
       flash.now[:notice] = "Portfolio was saved."
-      redirect_to @portfolio
     else
 
       flash.now[:alert] = "There was an error saving the Portfolio. Please try again."
       render :new
     end
-
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
@@ -37,7 +41,7 @@ class PortfoliosController < ApplicationController
 
     if @portfolio.destroy
       flash.now[:notice] = "\"#{@portfolio.name}\" was deleted successfully."
-      redirect_to action: :index
+      redirect_to root_path
     else
       flash.now[:error] = "There was an error deleting the portfolio."
       render :show

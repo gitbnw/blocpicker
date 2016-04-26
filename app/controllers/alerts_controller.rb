@@ -8,7 +8,8 @@ class AlertsController < ApplicationController
   
   def create
 
-    @stock = Stock.find(params[:stock][:id])
+    @stock = Stock.find_by(symbol: params[:alert][:symbol])
+    
     @alert.price_initial = @stock.lasttradepriceonly
     @alert.price_target = params[:alert][:price_target]
     @alert.expire = params[:alert][:expire]
