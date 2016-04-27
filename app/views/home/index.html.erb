@@ -1,43 +1,31 @@
 <div class="home">
   
   <h2>Portfolios</h2>
-  <div class="row home-container panel">
-    <div class="col-md-12">
-      <% if @user.portfolios.count == 0 %>
-      <div class="filler-text">No portfolios. How do you expect to get rich? Add one now!</div>
-    <% else %>
-      <%= render @user.portfolios %>
-      <% end %>
+  <div class="panel home-container">
+    <div class='js-portfolios'>
+      <%= render partial: "portfolios/list", class: 'portfolioslist', locals: { portfolios: @user.portfolios } %>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <%= render 'portfolios/form', user: @user, portfolio: Portfolio.new  %>
-      <%= button_to "Create Portfolio", new_portfolio_path(@portfolio), class: 'btn btn-success', method: :get %>
-      <%= button_to "Delete Portfolios", @portfolio, class: 'btn btn-danger', method: :delete, disabled: true %>
+  <div class="btn-row row">
+    <div class="col-md-12 new-portfolio">
+           <%= render 'portfolios/form', user: @user, portfolio: Portfolio.new  %>
     </div>
+  </div> 
 
 
   <h2>Alerts</h2>
-  <div class="home-container panel">
+  <div class="panel home-container">
       <div class='js-alerts'>
         <%= render partial: "alerts/list", class: 'alertslist', locals: { alerts: @user.alerts } %>
       </div>
-
-    </div>
   </div>
-  <div class="btn-row row"></div>
-  <div class="row">
-    <div class="col-md-12">
-           
+  <div class="btn-row row">
+    <div class="col-md-12 new-alert">
            <%= render 'alerts/form', user: @user, alert: Alert.new  %>
-           
-
     </div>
-
   </div> 
-  </div>
   
+</div>
 <script>
 $(document).ready(function() {
     $('a[disabled=disabled]').click(function(event){

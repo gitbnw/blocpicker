@@ -5,8 +5,6 @@
     $(".js-alerts").hide().html($list).fadeIn("slow", function() {
        $('#alert-<%= @alert.id %>')
 
-       var c = $('#canvas-<%= @alert.id %>')[0]
-      //  show(c)
     })
     
     $('.flash').prepend("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash.now[:notice] %></div>");

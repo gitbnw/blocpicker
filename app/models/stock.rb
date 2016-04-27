@@ -15,7 +15,7 @@ class Stock < ActiveRecord::Base
   scope :expired, -> {where(["stocks.updated_at < ?", 60.seconds.ago])}
   
   def self.apply_update(stock, quote)
-    
+
     stock.assign_attributes(
       averagedailyvolume: quote["AverageDailyVolume"],
       change: quote["Change"],

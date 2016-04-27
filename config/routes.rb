@@ -4,11 +4,9 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
-  resources :users, only: [:show] do
+  resources :users do
     resources :alerts
   end
-
-  
 
   resources :portfolios do
     resources :stocks, only: [:create, :show]
