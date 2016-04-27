@@ -24,13 +24,13 @@ Rails.application.routes.draw do
         post '/stocks/get_quote', to: 'stocks#get_quote'
      end
   end
-  
+
   post '/stocks/refresh', to: 'stocks#refresh'
   post '/alerts/initial_price', to: 'alerts#initial_price'
-  
-  
+
+
   root 'home#index'
-  
+
   mount Resque::Server, :at => "/resque"
 
 end
