@@ -1,5 +1,5 @@
 <%= include_gon(:init => true) %>
-<% raise %>
+
 <% @stocks = @portofolio.stocks.order(:symbol) %>
 <div id='portfolio_show'>
   <h1><%= @portfolio.name %></h1>

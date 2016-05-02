@@ -28,6 +28,7 @@ class PortfoliosController < ApplicationController
   end
 
   def show
+    raise
     @portfolio = Portfolio.find(params[:id])
 
     gon.watch.myCount = @portfolio.stocks.count
