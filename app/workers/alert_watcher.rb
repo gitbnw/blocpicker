@@ -1,6 +1,6 @@
 class AlertWatcher
 
-  queue_as :alert_watcher
+  @queue = :alert_watcher
 
   def self.perform
 
@@ -34,6 +34,9 @@ class AlertWatcher
   
   def fire_alert alert
     AlertMailer.alert_fired(alert).deliver_now
+    alert.fired = DateTime.now
+    alert.active = False
+    alert.save
   end
   
 end   
