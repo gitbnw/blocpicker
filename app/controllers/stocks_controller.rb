@@ -6,10 +6,7 @@ class StocksController < ApplicationController
 
     @portfolio = Portfolio.find(params[:portfolio_id])
 
-    @stock = Stock.find_or_initialize_by(stock_params) do |new_stock|
-      puts 'new stock remote call'
-      new_stock.class.quote_update(new_stock)
-    end
+    @stock = add_update_stock stock_params
 
     @portfolio_stock = @portfolio.stocks.where(stock_params).exists?
 

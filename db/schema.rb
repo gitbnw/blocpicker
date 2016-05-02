@@ -11,17 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401160332) do
+ActiveRecord::Schema.define(version: 20160429205713) do
 
   create_table "alerts", force: :cascade do |t|
     t.date     "start"
-    t.date     "expire"
+    t.datetime "expire"
     t.decimal  "price_target"
     t.decimal  "price_initial"
     t.integer  "user_id"
     t.integer  "stock_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "active",           default: true
+    t.string   "position_initial"
   end
 
   add_index "alerts", ["stock_id"], name: "index_alerts_on_stock_id"
@@ -42,11 +44,11 @@ ActiveRecord::Schema.define(version: 20160401160332) do
   end
 
   create_table "portfolios", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "stock_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "name"
+    t.integer  "user_id"
   end
 
   add_index "portfolios", ["stock_id"], name: "index_portfolios_on_stock_id"
@@ -80,7 +82,6 @@ ActiveRecord::Schema.define(version: 20160401160332) do
     t.string   "daysrange"
     t.string   "stockexchange"
     t.string   "ticks"
-    t.string   "bounce"
     t.string   "lasttradedate"
     t.string   "lasttradetime"
   end

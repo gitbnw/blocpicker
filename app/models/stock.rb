@@ -48,5 +48,11 @@ class Stock < ActiveRecord::Base
     end
     
   end
+  
+  def self.add_update_stock stock_params
+    Stock.find_or_initialize_by(stock_params) do |new_stock|
+      new_stock.class.quote_update(new_stock)
+    end    
+  end
 
 end

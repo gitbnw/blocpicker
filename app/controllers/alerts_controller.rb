@@ -15,7 +15,8 @@ class AlertsController < ApplicationController
     
     @alert.price_initial = @stock.lasttradepriceonly
     @alert.price_target = params[:alert][:price_target]
-
+    @alert.position_initial 
+    @price_initial > 
     @alert.expire = DateTime.strptime(params[:alert][:expire], '%m/%d/%Y %H:%M')
     @alert.stock = @stock
     @alert.user = current_user
@@ -24,6 +25,8 @@ class AlertsController < ApplicationController
 
     if @alert.save && @stock.save
       flash.now[:notice] = "Alert was saved."
+      
+      Resque.enqueue(AlertWatcher, @alert.id)
 
     else
 

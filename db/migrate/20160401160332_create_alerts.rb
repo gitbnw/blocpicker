@@ -2,7 +2,7 @@ class CreateAlerts < ActiveRecord::Migration
   def change
     create_table :alerts do |t|
       t.date :start
-      t.date :expire
+      t.datetime :expire
       t.decimal :price_target
       t.decimal :price_initial
       t.belongs_to :user, index: true
