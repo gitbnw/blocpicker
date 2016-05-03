@@ -1,13 +1,12 @@
 <%= include_gon(:init => true) %>
 
-<% @stocks = @portofolio.stocks.order(:symbol) %>
 <div id='portfolio_show'>
   <h1><%= @portfolio.name %></h1>
   <%= hidden_field(:portfolio, :id, :value => @portfolio.id) %>
   <div class="row">
     <div class="col-md-12">
       <div class='js-stocks'>
-        <%= render partial: "stocks/list", class: 'stockslist', locals: { stocks: @stocks } %>
+        <%= render partial: "stocks/list", class: 'stockslist', locals: { stocks: @portfolio.stocks } %>
       </div>
 
       <div class='new-stock'>

@@ -13,3 +13,5 @@ user = User.new(
 )
 user.skip_confirmation!
 user.save!
+
+puts 'seeds planted'

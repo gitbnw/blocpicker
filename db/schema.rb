@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160429205713) do
     t.datetime "updated_at",                      null: false
     t.boolean  "active",           default: true
     t.string   "position_initial"
+    t.datetime "fired"
   end
 
   add_index "alerts", ["stock_id"], name: "index_alerts_on_stock_id"
