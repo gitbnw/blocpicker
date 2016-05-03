@@ -33,7 +33,7 @@ class PortfoliosController < ApplicationController
     
     gon.watch.myCount = @portfolio.stocks.count
     
-    gon.watch.expired_stocks_ids = @portfolio.stocks.expired.pluck(:id)
+    gon.watch.expired_stocks_ids = @portfolio.stocks.expired.pluck(:id).select("id")
 
   end
 
