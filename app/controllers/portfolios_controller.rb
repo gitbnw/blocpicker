@@ -28,9 +28,9 @@ class PortfoliosController < ApplicationController
   end
 
   def show
-    raise
-    @portfolio = Portfolio.find(params[:id])
 
+    @portfolio = Portfolio.find(params[:id])
+    raise
     gon.watch.myCount = @portfolio.stocks.count
 
     gon.watch.expired_stocks_ids = @portfolio.stocks.expired.pluck(:id)
