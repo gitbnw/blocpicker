@@ -1,42 +1,55 @@
-class AlertWatcher
+module AlertWatcher
+  extend Resque::Plugins::Logger
 
   @queue = :alert_watcher
 
   def self.perform
 
     # Set all expired alerts to not active
-    Alert.active_expired.active = False
+    Alert.active_expired.update_all active: false
     
     # 
+    stock_array = []
+    # logger.info(puts Alert.all.inspect) 
     Alert.active.each do |alert|
-      @stock = Stock.find_by(:symbol => alert.symbol)
+      @stock = Stock.find_by(symbol: alert.stock.symbol)
+      # logger.info("@stock: #{@stock}") 
       stock_array << @stock
     end
     
-    Stock.quote_update(stock_array.uniq)
+    logger.info("stock array: #{stock_array.uniq}") 
+    
+
 
 # if alert 
-    Alert.active.each do |alert|
-      @stock = Stock.find_by(:symbol => alert.symbol)
 
-      if alert.position_initial == "above"
-        if @stock.lasttradepriceonly <= alert.price_target
-          fire_alert alert
+    unless stock_array.uniq.empty?
+      Stock.quote_update(stock_array.uniq)
+      
+      Alert.active.each do |alert|
+        @stock = Stock.find_by(symbol: alert.stock.symbol)
+        
+        AlertWatcher.fire alert # just testing
+        
+        if alert.position_initial == "above"
+          if @stock.lasttradepriceonly <= alert.price_target
+            AlertWatcher.fire alert
+          end
+        else
+          if @stock.lasttradepriceonly >= alert.price_target
+            AlertWatcher.fire alert
+          end
         end
-      else
-        if @stock.lasttradepriceonly >= alert.price_target
-          fire_alert alert
-        end
+  
       end
-
     end
   end
   
-  def fire_alert alert
+  def self.fire alert
     AlertMailer.alert_fired(alert).deliver_now
-    alert.fired = DateTime.now
-    alert.active = False
-    alert.save
+    alert.update(fired: DateTime.now)
+    alert.update(active: false)
+    alert.save!
   end
   
 end   

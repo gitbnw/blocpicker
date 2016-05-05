@@ -7,6 +7,17 @@ Stock watcher.  HTML5 graphics, anayltics.
 TODO: Describe the installation process
 
 ## Usage
+Start Redis
+sudo service redis-server start
+
+Start Resque Web
+resque-web -p 8081
+
+Start Job Scheduler with a log file
+rake resque:scheduler LOGFILE=./log/resque_scheduler.log
+
+Start Job Queue
+rake resque:work QUEUE='*'
 
 Sign up.  Sign in.  Add Portfolio.  Add stocks.  Watch 'em.  Trade 'em?
 

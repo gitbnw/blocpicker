@@ -8,31 +8,44 @@
    <%= csrf_meta_tags %>
 </head>
 <body>
-   <div class="container">
-        <div class="navbar" role="navigation">
+ <div class = "container-fluid">   
+<div class ="col-md-1">
+  <nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Blocpicker</a>
+  </div>            
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
 
           <% if user_signed_in? %>
 
-          <li><%= link_to current_user.name, current_user, :class => 'navbar-brand' %></li>
+          <li><%= link_to "Home", home_index_path, :class => 'btn btn-default' %></li>
 
           <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => "btn btn-default" %></li>
           <% else %>
-            <%= link_to "Register".html_safe, new_registration_path(:user), class: "btn btn-default" %>
+           <li> <%= link_to "Register".html_safe, new_registration_path(:user), class: "btn btn-default" %>
               <%- resource_class.omniauth_providers.each do |provider| %>
-                <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-default" do %>
+              <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-default" do %>
                 
                   <% content_tag(:i, nil, class: "fa fa-2x #{omniauth_icon_for(provider)}") %>
                 <% end %>
               <% end -%>
-           
-            <%= link_to "http://www.yahoo.com", class: 'btn btn-default' do %>
+           <%= link_to "http://www.yahoo.com", class: 'btn btn-default' do %>
               Test Drive <i class="fa fa-car"></i>
             <% end %>
 
           <% end %>
         </ul>
         </div>
+        </nav>
+        </div>
+    <div class="col-md-9 col-md-offset-1">       
      <div class="flash">
          
      <% if flash[:notice] %>
@@ -56,8 +69,11 @@
      
   
      </div>
-    <%= yield %>
 
+            
+    <%= yield %>
+    </div>
+</div>
 </body>
 
 </html>

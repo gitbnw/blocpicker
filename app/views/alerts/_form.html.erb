@@ -11,13 +11,15 @@
     </div>
     <div class="col-md-2">
       <%= f.text_field :price_initial,
+                       :step => 'any',
                        class: 'form-control',
                        disabled: true,
                        value: "" %>
       <%= f.label "initial price"%>
     </div>
     <div class="col-md-2">
-      <%= f.number_field :price_target,
+      <%= f.number_field :price_target, 
+                      :step => 'any',
                        class: 'form-control',
                        disabled: true,
                        value: "" %>

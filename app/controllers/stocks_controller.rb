@@ -6,7 +6,7 @@ class StocksController < ApplicationController
 
     @portfolio = Portfolio.find(params[:portfolio_id])
 
-    @stock = add_update_stock stock_params
+    @stock = Stock.add_update_stock stock_params
 
     @portfolio_stock = @portfolio.stocks.where(stock_params).exists?
 

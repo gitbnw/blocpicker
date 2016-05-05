@@ -5,15 +5,13 @@
    </head>
    <body>
      <h1>Alert has fired for "<%= @stock.symbol %>"</h1>
-     <small>
-       Target: <%= @alert.price_target %>
-     </small>
      <p>
+       Target: <%= @alert.price_target %>
        Last traded price: <%= @stock.lasttradepriceonly %>
      </p>
-     <p>
 
-       <%= link_to "View Comment on site", topic_post_url(@post.topic, @post, anchor: "comment-#{@comment.id}") %>
-     </p>
+
+       <%# link_to "View Comment on site", topic_post_url(@post.topic, @post, anchor: "comment-#{@comment.id}") %>
+
    </body>
  </html>

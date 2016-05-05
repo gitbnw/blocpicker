@@ -6,7 +6,7 @@ class Alert < ActiveRecord::Base
     validate :target_initial_fields_are_not_equal    
     
     scope :active, -> { where(active: true) }
-    scope :expired, -> { where("expire > ?", Time.zone.now) }
+    scope :expired, -> { where("expire < ?", Time.zone.now) }
     scope :active_expired, -> {active.expired}
     scope :above_price_triggered, -> {where("stock.lasttradeonly >= price_target")}# compare initial price with last trade
     scope :below_price_triggered, -> {where("")}

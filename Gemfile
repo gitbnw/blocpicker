@@ -78,5 +78,6 @@ gem 'business_time'
 gem 'resque', :require => "resque/server"
 gem 'redis', '~>3.2'
 gem 'resque-scheduler'
+gem 'resque-logger'
 
 

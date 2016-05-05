@@ -1,0 +1,6 @@
+do_my_job:
+  every: 30s
+  class: AlertWatcher
+  queue: alert_watcher
+  args:
+  description: Runs the perform method in AlertWatcher

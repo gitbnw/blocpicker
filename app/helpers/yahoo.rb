@@ -59,6 +59,7 @@ module Yahoo
     end
     
     def output
+      puts @response
       @response["query"]["results"]["quote"]
     end  
   end
