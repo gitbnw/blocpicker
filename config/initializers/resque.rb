@@ -4,12 +4,9 @@ require 'resque/scheduler'
 # rails_env = ENV['RAILS_ENV'] || 'development'
 
 # resque_config = YAML.load_file(rails_root + '/config/resque.yml')
-if Rails.env.production?
-  uri = URI.parse(ENV["REDISTOGO_URL"])
-  Resque.redis = "#{uri.host}:#{uri.port}"
-else  
-  Resque.redis = 'localhost:6379'
-end
+
+uri = ENV["REDISTOGO_URL"] || "redis://localhost:6379/"
+Resque.redis = Redis.new(:url => uri)
 
 Resque.redis.namespace = "resque:Rails"
 

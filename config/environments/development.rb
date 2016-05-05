@@ -40,4 +40,6 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   
   config.action_mailer.default_url_options = { host: 'blocpicker-gitbnw.c9users.io', port: 8000 }
+  
+  ENV["REDISTOGO_URL"] = 'redis://redistogo:729aa69d00a4ab1fab3de2f40175c48c@hoki.redistogo.com:9842/' 
 end
