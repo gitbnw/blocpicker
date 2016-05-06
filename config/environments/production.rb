@@ -79,6 +79,6 @@ Rails.application.configure do
   
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  ENV["REDISTOGO_URL"] = 'redis://redistogo:729aa69d00a4ab1fab3de2f40175c48c@hoki.redistogo.com:9842/' 
+  ENV["REDISTOGO_URL"] = 'redis://byron.weiss@gmail.com:Pc&e0JW7Cg@hoki.redistogo.com:9842' 
   
 end
