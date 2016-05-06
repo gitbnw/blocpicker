@@ -5,7 +5,7 @@ class Api::V1::StocksController < Api::V1::BaseController
   include ActionView::Helpers::NumberHelper
 
   def refresh
-    @portfolio = Portfolio.where(params[:portfolio_id]).first
+    @portfolio = Portfolio.find(params[:portfolio_id])
     @stocks = Stock.quote_update(Stock.find(params[:stock_ids]))
     @stocks_changed = price_change_assign(@stocks)
     @stocks.map {|stock| stock.save }
