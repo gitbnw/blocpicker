@@ -76,7 +76,7 @@ gem 'rabl-rails'
 gem 'rubocop'
 gem 'business_time'
 
-gem 'resque', :require => "resque/server"
+gem 'resque', "~> 1.22.0", :require => "resque/server"
 gem 'redis', '~>3.2'
 gem 'resque-scheduler'
 gem 'resque-logger'
