@@ -135,6 +135,7 @@ GEM
       ast (~> 2.2)
     pg (0.18.4)
     powerpack (0.1.1)
+    puma (3.4.0)
     rabl-rails (0.4.2)
       activesupport (>= 3.1)
       railties (>= 3.1)
@@ -277,6 +278,7 @@ DEPENDENCIES
   omniauth
   omniauth-google-oauth2
   pg
+  puma
   rabl-rails
   rails (= 4.2.5)
   rails_12factor

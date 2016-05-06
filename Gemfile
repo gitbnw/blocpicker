@@ -6,6 +6,7 @@ gem 'rails', '4.2.5'
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+
 end
 
 group :development, :test do
@@ -81,3 +82,4 @@ gem 'resque-scheduler'
 gem 'resque-logger'
 
 
+gem 'puma'

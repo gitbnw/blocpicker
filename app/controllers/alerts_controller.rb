@@ -18,7 +18,7 @@ class AlertsController < ApplicationController
 
     @stock.lasttradepriceonly >  @alert.price_target ?  @alert.position_initial = "above" : @alert.position_initial = "below"
     
-    @alert.expire = DateTime.strptime(params[:alert][:expire], '%m/%d/%Y %H:%M')
+    @alert.expire = DateTime.strptime(params[:alert][:expire], '%m/%d/%Y %H:%M').strftime('%Y-%m-%d %H:%M:%S')
     @alert.stock = @stock
     @alert.user = current_user
     @user = current_user
