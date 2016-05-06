@@ -11,7 +11,7 @@ Start Redis
 sudo service redis-server start
 
 Start Resque Web
-resque-web -p 8081
+resque-web
 
 Start Job Scheduler with a log file
 rake resque:scheduler LOGFILE=./log/resque_scheduler.log
