@@ -9,7 +9,7 @@ require 'resque/scheduler/tasks'
      require 'resque/scheduler'
  
      # you probably already have this somewhere
-     Resque.redis = 'localhost:6379'
+     Resque.redis = ENV["REDISTOGO_URL"]
      
  
 
