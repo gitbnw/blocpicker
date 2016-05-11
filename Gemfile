@@ -48,6 +48,7 @@ group :development do
     gem 'capistrano-secrets-yml', '~> 1.0.0'
     gem 'capistrano-postgresql', '~> 4.2.0'  
     gem 'capistrano-safe-deploy-to', '~> 1.1.1'
+    gem 'capistrano-ssh-doctor', '~> 1.0'
 end
 
 gem 'devise', '~> 3.5'
@@ -79,5 +80,5 @@ gem 'redis', '~>3.2'
 gem 'resque-scheduler'
 gem 'resque-logger'
 
-
+gem 'foreman'
 gem 'puma'
