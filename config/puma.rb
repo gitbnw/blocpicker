@@ -12,7 +12,7 @@ rails_env = ENV['RAILS_ENV'] || "production"
 environment rails_env
 
 # Set up socket location
-bind "unix://#{shared_dir}/sockets/blocpicker-puma.sock"
+bind "unix:///home/bnw/apps/blocpicker/shared/tmp/sockets/blocpicker-puma.sock"
 
 # Logging
 stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
