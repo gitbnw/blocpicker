@@ -14,8 +14,6 @@ end
 
 task :restart do 
   on roles(:app) do
-    execute :sudo, "restart appname"
+    execute :sudo, "restart blocpicker"
   end
 end
-after :publishing, :export
-   after :publishing, :restart
