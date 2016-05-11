@@ -9,9 +9,8 @@ require 'resque/scheduler/tasks'
      require 'resque/scheduler'
  
      # you probably already have this somewhere
-     Resque.redis = ENV["REDISTOGO_URL"]
-     
- 
+     Resque.redis = ENV['REDIS_URL']
+     Resque.after_fork = Proc.new { ActiveRecord::Base.establish_connection }
 
    end
  end
