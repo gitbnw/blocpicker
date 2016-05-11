@@ -79,5 +79,6 @@ Rails.application.configure do
   
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-
+  RAILS_DEFAULT_LOGGER = Logger.new('log/production.log')
+  
 end
