@@ -46,6 +46,8 @@ group :development do
     gem 'capistrano-bundler', require: false
     gem 'capistrano3-puma',   require: false
     gem 'capistrano-secrets-yml', '~> 1.0.0'
+    gem 'capistrano-postgresql', '~> 4.2.0'  
+    gem 'capistrano-safe-deploy-to', '~> 1.1.1'
 end
 
 gem 'devise', '~> 3.5'
