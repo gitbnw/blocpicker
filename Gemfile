@@ -46,9 +46,12 @@ group :development do
     gem 'capistrano-bundler', require: false
     gem 'capistrano3-puma',   require: false
     gem 'capistrano-secrets-yml', '~> 1.0.0'
-    gem 'capistrano-postgresql', '~> 4.2.0'  
-    gem 'capistrano-safe-deploy-to', '~> 1.1.1'
-    gem 'capistrano-ssh-doctor', '~> 1.0'
+end
+
+group :production do
+  gem 'execjs'
+  gem 'therubyracer'
+  gem 'puma'
 end
 
 gem 'devise', '~> 3.5'
@@ -81,4 +84,3 @@ gem 'resque-scheduler'
 gem 'resque-logger'
 
 gem 'foreman'
-gem 'puma'
