@@ -70,6 +70,8 @@ GEM
     capistrano-secrets-yml (1.0.0)
       capistrano (>= 3.1)
       sshkit (>= 1.2.0)
+    capistrano-ssh-doctor (1.0.0)
+      capistrano (>= 3.1)
     capistrano3-puma (1.2.1)
       capistrano (~> 3.0)
       puma (>= 2.6)
@@ -194,11 +196,6 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    rails_12factor (0.0.3)
-      rails_serve_static_assets
-      rails_stdout_logging
-    rails_serve_static_assets (0.0.5)
-    rails_stdout_logging (0.0.4)
     railties (4.2.5)
       actionpack (= 4.2.5)
       activesupport (= 4.2.5)
@@ -307,6 +304,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   capistrano-secrets-yml (~> 1.0.0)
+  capistrano-ssh-doctor (~> 1.0)
   capistrano3-puma
   coffee-rails (~> 4.1.0)
   devise (~> 3.5)
@@ -326,7 +324,6 @@ DEPENDENCIES
   puma
   rabl-rails
   rails (= 4.2.5)
-  rails_12factor
   redis (~> 3.2)
   resque
   resque-logger

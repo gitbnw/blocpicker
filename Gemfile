@@ -4,9 +4,10 @@ ruby '2.2.1'
 gem 'rails', '4.2.5'
 
 group :production do
-  gem 'pg'
-  gem 'rails_12factor'
+  gem 'execjs'
   gem 'therubyracer'
+  gem 'puma'
+  gem 'pg'
 end
 
 group :development, :test do
@@ -46,13 +47,10 @@ group :development do
     gem 'capistrano-bundler', require: false
     gem 'capistrano3-puma',   require: false
     gem 'capistrano-secrets-yml', '~> 1.0.0'
+    gem 'capistrano-ssh-doctor', '~> 1.0'
 end
 
-group :production do
-  gem 'execjs'
-  gem 'therubyracer'
-  gem 'puma'
-end
+
 
 gem 'devise', '~> 3.5'
 
