@@ -69,6 +69,9 @@ GEM
     capistrano-bundler (1.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-figaro-yml (1.0.2)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2, >= 1.2.0)
     capistrano-harrow (0.5.1)
     capistrano-postgresql (4.2.1)
       capistrano (>= 3.0)
@@ -309,6 +312,7 @@ DEPENDENCIES
   business_time
   capistrano
   capistrano-bundler
+  capistrano-figaro-yml (~> 1.0.2)
   capistrano-postgresql (~> 4.2.0)
   capistrano-rails
   capistrano-rvm

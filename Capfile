@@ -9,6 +9,7 @@ require 'capistrano/puma'
 require 'capistrano/secrets_yml'
 require 'capistrano/ssh_doctor'
 require 'capistrano/postgresql'
+require 'capistrano/figaro_yml'
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
