@@ -48,6 +48,7 @@ group :development do
     gem 'capistrano3-puma',   require: false
     gem 'capistrano-secrets-yml', '~> 1.0.0'
     gem 'capistrano-ssh-doctor', '~> 1.0'
+    gem 'capistrano-postgresql', '~> 4.2.0'
 end
 
 
