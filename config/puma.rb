@@ -1,5 +1,3 @@
-
-
   # Change to match your CPU core count
   workers 1
   
@@ -19,3 +17,4 @@
     ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
     ActiveRecord::Base.establish_connection(YAML.load_file("#{app_dir}/config/database.yml")[rails_env])
   end
+      
