@@ -93,7 +93,7 @@ namespace :deploy do
           'export rvmsudo_secure_path=0 && ',
           "#{fetch(:rvm_path)}/bin/rvm #{fetch(:rvm_ruby_version)} do",
           'rvmsudo',
-          'RAILS_ENV=production bundle exec foreman export --app blocpicker --user deploy -l logfile-path -f ./Procfile upstart /etc/init -c worker=1,scheduler=1, rweb=1'
+          'RAILS_ENV=production sudo -i -u $USER bundle exec foreman export --app blocpicker --user deploy -l logfile-path -f ./Procfile upstart /etc/init -c worker=1,scheduler=1, rweb=1'
         ].join(' ')
       end
   end
