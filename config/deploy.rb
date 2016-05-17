@@ -61,7 +61,19 @@ namespace :redis do
         sudo "/etc/init.d/redis-server stop; sudo /etc/init.d/redis-server start"
       end
     end
-
+    
+    desc "Start Resque Workers"
+    task :export do
+        on roles(:app) do
+          execute [
+            "cd #{release_path} &&",
+            'export rvmsudo_secure_path=0 && ',
+            "#{fetch(:rvm_path)}/bin/rvm #{fetch(:rvm_ruby_version)} do",
+            'rvmsudo',
+            'RAILS_ENV=production bundle exec foreman export --app blocpicker --user deploy -l logfile-path -f ./Procfile upstart /etc/init -c worker=1,scheduler=1'
+          ].join(' ')
+        end
+    end
 end
 
 namespace :deploy do
