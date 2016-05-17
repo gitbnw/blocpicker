@@ -85,17 +85,12 @@ namespace :deploy do
     end
   end
   
-  desc "Start Resque Workers"
+  desc "Export the Procfile to upstart scripts"
   task :export do
-      on roles(:app) do
-        execute [
-          "cd #{release_path} &&",
-          'export rvmsudo_secure_path=0 && ',
-          "#{fetch(:rvm_path)}/bin/rvm #{fetch(:rvm_ruby_version)} do",
-          'rvmsudo',
-          'RAILS_ENV=production bundle exec foreman export --app blocpicker --user deploy -l logfile-path -f ./Procfile upstart /etc/init -c worker=1,scheduler=1, rweb=1'
-        ].join(' ')
-      end
+     on roles (:app) do
+      # 1 resque worker, 1 resque scheduler
+      run "cd #{release_path} && rvmsudo bundle exec foreman export upstart /etc/init -a #{application} -u #{user} -l #{shared_path}/log  -f #{release_path}/Procfile -c worker=1,scheduler=1, rweb=1"
+    end 
   end
     
   desc 'Restart application'
