@@ -28,13 +28,10 @@ Rails.application.routes.draw do
   post '/stocks/refresh', to: 'stocks#refresh'
   post '/alerts/initial_price', to: 'alerts#initial_price'
 
-
   root 'home#index'
 
   mount Resque::Server, :at => "/resque"
 
-  blocpicker::Application.routes.draw do
-    mount ResqueWeb::Engine => "/resque_web"
-  end
+  mount ResqueWeb::Engine => "/resque_web"
 
 end
