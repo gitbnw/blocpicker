@@ -85,13 +85,19 @@ namespace :deploy do
     end
   end
   
-  desc "Export the Procfile to upstart scripts"
+  desc "Export Upstart script"
   task :export do
-     on roles(:app) do
-      run "cd #{release_path}"; # rvmsudo bundle exec foreman export upstart /etc/init -a #{fetch(:application)} -u #{fetch(:user)} -l #{shared_path}/log -f #{release_path}/Procfile -c worker=1,scheduler=1,rweb=1"
-    end 
+    on roles(:app) do
+      execute [
+        "cd #{release_path} &&",
+        'export rvmsudo_secure_path=0 && ',
+        "#{fetch(:rvm_path)}/bin/rvm #{fetch(:rvm_ruby_version)} do",
+        'rvmsudo',
+        'bundle exec foreman export upstart /etc/init -a #{fetch(:application)} -u #{fetch(:user)} -l #{shared_path}/log -c worker=1,scheduler=1,rweb=1 -f #{release_path}/Procfile' 
+      ].join(' ')
+    end
   end
-    
+  
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
