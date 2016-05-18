@@ -93,7 +93,7 @@ namespace :deploy do
         'export rvmsudo_secure_path=0 && ',
         "#{fetch(:rvm_path)}/bin/rvm #{fetch(:rvm_ruby_version)} do",
         'rvmsudo',
-        'bundle exec foreman export upstart /etc/init -a #{fetch(:application)} -u #{fetch(:user)} -l #{shared_path}/log -f #{release_path}/Procfile' 
+        'bundle exec foreman export upstart /etc/init -a #{fetch(:application)} -u #{fetch(:user)} -f #{release_path}/Procfile' 
       ].join(' ')
     end
   end
