@@ -123,6 +123,7 @@ namespace :deploy do
   before :finishing,    :export
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
+  after  :finishing,    :services
   after  :finishing,    :restart
 end
 
