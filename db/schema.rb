@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429205713) do
+ActiveRecord::Schema.define(version: 20160518180305) do
 
   create_table "alerts", force: :cascade do |t|
     t.date     "start"
@@ -107,6 +107,8 @@ ActiveRecord::Schema.define(version: 20160429205713) do
     t.string   "name"
     t.string   "provider"
     t.string   "uid"
+    t.string   "oauth_token"
+    t.string   "oauth_expires_at"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
