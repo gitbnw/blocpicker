@@ -101,6 +101,7 @@ namespace :deploy do
   desc "Export Upstart script"
   task :services do
     on roles(:app) do
+      execute "sudo service nginx restart"
       execute "sudo service app-worker restart"
       execute "sudo service app-scheduler restart"
       execute "sudo service app-rweb restart"
@@ -125,6 +126,7 @@ namespace :deploy do
   after  :finishing,    :cleanup
   after  :finishing,    :services
   after  :finishing,    :restart
+  after  :finishing,    :seed
 end
 
 # ps aux | grep puma    # Get puma pid
