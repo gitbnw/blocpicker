@@ -126,7 +126,6 @@ namespace :deploy do
   after  :finishing,    :cleanup
   after  :finishing,    :services
   after  :finishing,    :restart
-  after  :finishing,    :seed
 end
 
 # ps aux | grep puma    # Get puma pid
