@@ -82,5 +82,6 @@ gem 'resque', :require => "resque/server"
 gem 'redis', '~>3.2'
 gem 'resque-scheduler'
 gem 'resque-logger'
+gem 'resque-web', require: 'resque_web'
 
 gem 'foreman'

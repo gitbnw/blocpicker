@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  require "resque_web"
 
   get 'home/index'
 
@@ -30,5 +32,9 @@ Rails.application.routes.draw do
   root 'home#index'
 
   mount Resque::Server, :at => "/resque"
+
+  blocpicker::Application.routes.draw do
+    mount ResqueWeb::Engine => "/resque_web"
+  end
 
 end
