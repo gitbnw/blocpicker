@@ -116,7 +116,15 @@ namespace :deploy do
   
   desc "reload the database with seed data"
   task :seed do
-    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
+    on roles(:app) do
+      execute [
+        "cd #{release_path} &&",
+        'export rvmsudo_secure_path=0 && ',
+        "#{fetch(:rvm_path)}/bin/rvm #{fetch(:rvm_ruby_version)} do",
+        'rvmsudo',
+        'bundle exec rake db:seed RAILS_ENV="production"' 
+      ].join(' ')      
+    end
   end
   
   before :starting,     :check_revision
