@@ -88,8 +88,7 @@ namespace :deploy do
   desc "Export the Procfile to upstart scripts"
   task :export do
      on roles (:app) do
-      # 1 resque worker, 1 resque scheduler
-      run "cd #{release_path} && rvmsudo bundle exec foreman export upstart /etc/init -a #{fetch(:application)} -u #{fetch(:user)} -l #{shared_path}/log  -f #{release_path}/Procfile -c worker=1,scheduler=1, rweb=1"
+      # run "cd #{release_path} && rvmsudo bundle exec foreman export upstart /etc/init -a #{fetch(:application)} -u #{fetch(:user)} -l #{shared_path}/log  -f #{release_path}/Procfile -c worker=1,scheduler=1, rweb=1"
     end 
   end
     
