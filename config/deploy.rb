@@ -101,9 +101,9 @@ namespace :deploy do
   desc "Export Upstart script"
   task :services do
     on roles(:app) do
-      execute "sudo service app-worker restart"
-      execute "sudo service app-scheduler restart"
-      execute "sudo service app-rweb restart"
+      execute "sudo service app-worker-1 restart"
+      execute "sudo service app-scheduler-1 restart"
+      execute "sudo service app-rweb-1 restart"
     end
   end
   

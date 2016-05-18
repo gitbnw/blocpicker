@@ -84,4 +84,4 @@ gem 'resque-scheduler'
 gem 'resque-logger'
 gem 'resque-web', require: 'resque_web'
 
-gem 'foreman'
+gem 'foreman', '0.64'
