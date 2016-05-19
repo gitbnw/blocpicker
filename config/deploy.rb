@@ -93,7 +93,7 @@ namespace :deploy do
         'export rvmsudo_secure_path=0 && ',
         "#{fetch(:rvm_path)}/bin/rvm #{fetch(:rvm_ruby_version)} do",
         'rvmsudo',
-        'bundle exec foreman export upstart /etc/init -a #{fetch(:application)} -u #{fetch(:user)} -f #{release_path}/Procfile' 
+        'bundle exec foreman export upstart /etc/init -a blocpicker -u deploy -f ./Procfile' 
       ].join(' ')
     end
   end
@@ -101,9 +101,8 @@ namespace :deploy do
   desc "Export Upstart script"
   task :services do
     on roles(:app) do
-      execute "sudo service app-worker-1 restart"
-      execute "sudo service app-scheduler-1 restart"
-      execute "sudo service app-rweb-1 restart"
+      execute "sudo service blocpicker-worker-1 restart"
+      execute "sudo service blocpicker-scheduler-1 restart"
     end
   end
   
