@@ -1,4 +1,5 @@
-require 'resque/scheduler'
+require 'resque'
+require 'resque-scheduler'
 require 'resque/scheduler/server'
 
 # rails_root = ENV['RAILS_ROOT'] || File.dirname(__FILE__) + '/../..'
