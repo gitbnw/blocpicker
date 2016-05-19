@@ -50,6 +50,7 @@ group :development do
     gem 'capistrano-ssh-doctor', '~> 1.0'
     gem 'capistrano-postgresql', '~> 4.2.0'
     gem 'capistrano-figaro-yml', '~> 1.0.2'
+    gem "capistrano-resque", "~> 0.2.2", require: false
 end
 
 

@@ -1,2 +1,2 @@
 worker:  RAILS_ENV=production bundle exec rake resque:work QUEUE='*'
-scheduler: RAILS_ENV=production bundle exec rake resque:scheduler LOGFILE=./log/resque_scheduler.log
+scheduler: RAILS_ENV=production bundle exec rake resque:scheduler LOGFILE=./log/resque_scheduler.log INITIALIZER_PATH=config/initializers/resque.rb

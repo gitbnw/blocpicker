@@ -24,7 +24,7 @@ Resque.schedule = YAML.load_file(Rails.root.join('config', 'resque_schedule.yml'
 #Resque::Scheduler.dynamic = true
 
 Dir["#{Rails.root}/app/jobs/*.rb"].each { |file| require file }
-Dir["/app/app/jobs/*.rb"].each { |file| require file }
+
 log_path = File.join Rails.root, 'log'
 
 config = {
