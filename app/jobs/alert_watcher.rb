@@ -29,7 +29,7 @@ module AlertWatcher
       Alert.active.each do |alert|
         @stock = Stock.find_by(symbol: alert.stock.symbol)
         
-        AlertWatcher.fire alert # just testing
+        #AlertWatcher.fire alert just testing
         
         if alert.position_initial == "above"
           if @stock.lasttradepriceonly <= alert.price_target
