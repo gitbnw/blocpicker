@@ -20,7 +20,7 @@ class PortfoliosController < ApplicationController
       flash.now[:alert] = "There was an error saving the Portfolio. Please try again."
       render :new
     end
-    
+
     respond_to do |format|
       format.html
       format.js
@@ -30,11 +30,11 @@ class PortfoliosController < ApplicationController
   def show
 
     @portfolio = Portfolio.find(params[:id])
-    
+
     gon.watch.myCount = @portfolio.stocks.count
-    
+
     gon.watch.expired_stocks_ids = @portfolio.stocks.expired.map(&:id)
-    
+
   end
 
   def destroy

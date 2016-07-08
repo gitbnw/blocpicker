@@ -39,10 +39,10 @@ class User < ActiveRecord::Base
       :email => Faker::Internet.email ,
       :password => @password,
       :password_confirmation => @password
-      )
-      dummy_user.skip_confirmation!
-      dummy_user.save!
-      return dummy_user
+    )
+    dummy_user.skip_confirmation!
+    dummy_user.save!
+    return dummy_user
   end
 
 end

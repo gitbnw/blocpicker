@@ -7,9 +7,9 @@ class Portfolio < ActiveRecord::Base
     dummy_portfolio = Portfolio.create(
       :name => Faker::Space.constellation,
       :user_id => user.id
-      )
-      dummy_portfolio.save!
-      return dummy_portfolio
+    )
+    dummy_portfolio.save!
+    return dummy_portfolio
   end
-  
+
 end
