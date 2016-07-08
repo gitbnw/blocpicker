@@ -13,7 +13,6 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'faker'
 end
 
 group :test do
@@ -90,3 +89,4 @@ gem 'foreman', '0.64'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
+gem 'faker'

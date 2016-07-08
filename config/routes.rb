@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   require "resque_web"
 
   get 'home/index'
+  
+  get 'users/testdrive', to: 'users#testdrive'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
@@ -29,6 +31,8 @@ Rails.application.routes.draw do
   post '/alerts/initial_price', to: 'alerts#initial_price'
 
   root 'home#index'
+  
+  
 
   mount Resque::Server, :at => "/resque"
 

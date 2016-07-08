@@ -36,10 +36,11 @@
                   <% content_tag(:i, nil, class: "fa fa-2x #{omniauth_icon_for(provider)}") %>
                 <% end %>
               <% end -%>
-           <%= link_to "http://www.yahoo.com", class: 'btn btn-default' do %>
+              
+           <%= link_to users_testdrive_path, class: 'btn btn-default', id: 'testdrive-link' do %>
               Test Drive <i class="fa fa-car"></i>
             <% end %>
-
+            
           <% end %>
         </ul>
         </div>

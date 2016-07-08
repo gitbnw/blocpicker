@@ -15,7 +15,7 @@ Resque.redis.namespace = "resque:Rails"
 
 # The schedule doesn't need to be stored in a YAML, it just needs to
 # be a hash.  YAML is usually the easiest.
-puts "loading schedule"
+
 Resque.schedule = YAML.load_file(Rails.root.join('config', 'resque_schedule.yml'))
 
 # If you want to be able to dynamically change the schedule,

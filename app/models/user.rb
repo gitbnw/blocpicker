@@ -32,4 +32,17 @@ class User < ActiveRecord::Base
     return_user
   end
 
+  def self.from_dummy
+    @password = Faker::Internet.password(8)
+    dummy_user =  User.new(
+      :name => Faker::Superhero.name,
+      :email => Faker::Internet.email ,
+      :password => @password,
+      :password_confirmation => @password
+      )
+      dummy_user.skip_confirmation!
+      dummy_user.save!
+      return dummy_user
+  end
+
 end
