@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'home/index'
   
-  get 'users/testdrive', to: 'autopilot/takeoff'
+  get 'users/autopilot', to: 'autopilot#takeoff'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 

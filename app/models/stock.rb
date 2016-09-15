@@ -13,7 +13,7 @@ class Stock < ActiveRecord::Base
   default_scope { order('symbol ASC') }
   scope :freshest, -> { order(updated_at: :asc)}
   scope :oldest, -> { order(updated_at: :desc)}
-  scope :expired, -> {where(["stocks.updated_at < ?", 60.seconds.ago])}
+  scope :expired, -> {where(["stocks.updated_at < ?", 10.seconds.ago])}
 
   def self.apply_update(stock, quote)
 

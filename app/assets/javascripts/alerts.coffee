@@ -23,8 +23,8 @@ lookup_symbol = (symbol) ->
             error: (jqXHR, textStatus, errorThrown) ->
               console.log "AJAX 2 Error: #{errorThrown}"
               success: (stocks_html, textStatus, jqXHR) -> 
-                  
-$(document).on "page:change", ->
+
+$(document).on "turbolinks:load", ->
     $('#alert_symbol').blur ->
         symbol = $('#alert_symbol').val()
         if symbol.length > 0

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Blocpicker</title>
+  <title>Quota</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <%= stylesheet_link_tag    "application", media: "all" %>
    <%= javascript_include_tag "application" %>
@@ -18,7 +18,9 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">Blocpicker</a>
+    <div class="brand">
+    <a class="navbar-brand" href="#">Quota</a>
+    </div>
   </div>            
         <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
@@ -37,7 +39,7 @@
                 <% end %>
               <% end -%>
               
-           <%= link_to users_testdrive_path, class: 'btn btn-default', id: 'testdrive-link' do %>
+           <%= link_to users_autopilot_path, class: 'btn btn-default', id: 'testdrive-link' do %>
               Test Drive <i class="fa fa-car"></i>
             <% end %>
             

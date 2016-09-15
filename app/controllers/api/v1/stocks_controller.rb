@@ -14,7 +14,8 @@ class Api::V1::StocksController < Api::V1::BaseController
   
   def get_quote
     @symbol = params[:symbol]
-    @quote = Yahoo::YQLFinance.new.find_quote(@symbol).output
+    # @quote = Yahoo::YQLFinance.new.find_quote(@symbol).output
+    @quote = Markit::MarkitFinance.new.find_quote(@symbol).output
     render json: @quote
   end
   

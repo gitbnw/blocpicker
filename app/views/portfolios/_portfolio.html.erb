@@ -6,7 +6,7 @@
   <% @change_fraction = stock.change.to_f / (stock.lasttradepriceonly.to_f + stock.change.to_f) %>
   <% @total += @change_fraction %>
 <% end %>
-<% @total_percentage = number_to_percentage(@total * 100, precision: 2) %>
+<% @total_percentage = number_to_percentage((@total * 100 / @stocks.count), precision: 2) %>
 <% if @total >= 0 %>
   <% @total_change_sign = "+" %>
   <% @condition_class = "text-success" %>

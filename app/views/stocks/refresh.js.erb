@@ -5,8 +5,6 @@
     var height = canvas.height;
     var colorArray = <%= raw stock.ticks.to_json %>
     
-    console.log(colorArray)
-
     $stock = $("<%= j render(stock) %>");
 
     $stockrow = $('#stock-row-<%= stock.id %>')
