@@ -19,6 +19,8 @@ rake resque:scheduler LOGFILE=./log/resque_scheduler.log
 Start Job Queue
 rake resque:work QUEUE='*'
 
+(for Cloud9 Dev enviro start:  rails s webrick -b $IP -p $PORT )
+
 Sign up.  Sign in.  Add Portfolio.  Add stocks.  Watch 'em.  Trade 'em?
 
 ## Contributing
