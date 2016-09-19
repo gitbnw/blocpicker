@@ -33,6 +33,6 @@ canvasArr = []
   ctx.fillStyle = colorize(this_canvasObj);
   ctx.fillRect(0,0,width,24); 
 
-$(document).on 'ready page:change', ->
+$(document).on 'ready turbolinks:load', ->
   $('.tag-tooltip').tooltip()
   return

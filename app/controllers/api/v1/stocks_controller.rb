@@ -6,10 +6,20 @@ class Api::V1::StocksController < Api::V1::BaseController
 
   def refresh
     @portfolio = Portfolio.find(params[:portfolio_id])
-    @stocks = Stock.quote_update(Stock.find(params[:stock_ids]))
-    @stocks_changed = price_change_assign(@stocks)
-    @stocks.map {|stock| stock.save }
-    render json: @stocks
+    
+    @stocks = Stock.find(params[:stock_ids])
+    @stocks_array = []
+
+    @stocks.each do |stock|
+      @stock = Stock.quote_update_single(stock)
+      sleep 1
+      @stocks_array << @stock
+    end
+    
+    #@stocks = Stock.quote_update(Stock.find(params[:stock_ids]))
+    @stocks_changed = price_change_assign(@stocks_array)
+    @stocks_array .map {|stock| stock.save }
+    render json: @stocks_array 
   end
   
   def get_quote
@@ -24,25 +34,23 @@ class Api::V1::StocksController < Api::V1::BaseController
   # end
 
   def price_change_assign(stocks)
+
     stocks.each do |stock|
+      
       @change = 100 * ((stock.lasttradepriceonly / stock.lasttradepriceonly ) - (stock.lasttradepriceonly_was / stock.lasttradepriceonly))
 
       stock.ticks.pop if stock.ticks.length == 10
     
-      if @change > 0.05
+      if @change > 0.01
         stock[:ticks].unshift('green')
-      elsif @change < -0.05
+      elsif @change < -0.01
         stock[:ticks].unshift('red')
       else
         stock[:ticks].unshift('#272B30')
       end
 
     end
-    
-  def bounce_assign(stock)
-    
-  end
-  
+
   end
 
 end

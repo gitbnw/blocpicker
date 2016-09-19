@@ -7,14 +7,15 @@ class StocksController < ApplicationController
     @portfolio = Portfolio.find(params[:portfolio_id])
 
     @stock = Stock.add_update_stock stock_params
-
+    
     @portfolio_stock = @portfolio.stocks.where(stock_params).exists?
 
     if @portfolio.stocks.where(stock_params).exists?
 
       puts 'stock exists in portfolio, will not be saved'
       flash[:alert] = "Stock exists in portfolio."
-
+  
+      
     elsif @stock.save
 
       puts 'stock has saved and not in portfolio'

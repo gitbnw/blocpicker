@@ -6,6 +6,7 @@ module Markit
     def find_quote symbol
       Quote.new HTTParty.get("http://dev.markitondemand.com/MODApis/Api/v2/Quote?symbol=#{symbol}")
     end
+
     
   end
     
@@ -18,6 +19,8 @@ module Markit
       @response#["StockQuote"]["results"]["quote"]
     end
   end
+  
+
     
 
 

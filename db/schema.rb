@@ -83,8 +83,9 @@ ActiveRecord::Schema.define(version: 20160518180305) do
     t.string   "daysrange"
     t.string   "stockexchange"
     t.string   "ticks"
-    t.string   "lasttradedate"
+    t.string   "timestamp"
     t.string   "lasttradetime"
+    t.boolean  "notfound",            default: false
   end
 
   create_table "users", force: :cascade do |t|

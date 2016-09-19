@@ -10,7 +10,7 @@ class AlertsController < ApplicationController
     @alert = Alert.new
     @stock = Stock.find_or_initialize_by(symbol: params[:alert][:symbol]) do |new_stock|
       puts 'new stock remote call'
-      new_stock.class.quote_update(new_stock)
+      new_stock.class.quote_update_single(new_stock)
     end    
     
     @alert.price_initial = @stock.lasttradepriceonly

@@ -79,7 +79,7 @@ myStopFunction = ->
   window.refresh_rate = @refresh_rate
   gon.watch 'myCount', @init_refresh
 
-$(document).on "page:change", ->
+$(document).on "turbolinks:load", ->
     $('#portfolio_name').keyup ->
         name = $('#portfolio_name').val()
         if name.length > 0

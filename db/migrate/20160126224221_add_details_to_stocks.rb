@@ -9,5 +9,6 @@ class AddDetailsToStocks < ActiveRecord::Migration
     add_column :stocks, :lasttradepriceonly, :decimal
     add_column :stocks, :daysrange, :string
     add_column :stocks, :stockexchange, :string
+    add_column :stocks, :notfound, :boolean
   end
 end

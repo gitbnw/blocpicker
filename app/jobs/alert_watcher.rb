@@ -24,7 +24,10 @@ module AlertWatcher
 # if alert 
 
     unless stock_array.uniq.empty?
-      Stock.quote_update(stock_array.uniq)
+      #Stock.quote_update(stock_array.uniq)
+      stock_array.uniq.each do |stock|
+        Stock.quote_update_single(stock)
+      end
       
       Alert.active.each do |alert|
         @stock = Stock.find_by(symbol: alert.stock.symbol)
