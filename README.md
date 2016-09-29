@@ -1,4 +1,4 @@
-# Blocpicker
+# Quota
 
 Stock watcher.  HTML5 graphics, anayltics.
 
