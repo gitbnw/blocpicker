@@ -4,7 +4,7 @@ Stock watcher.  HTML5 graphics, anayltics.
 
 ## Installation
 
-Uses rails, redis, resque, and even some that don't with r.
+Uses rails, redis, resque, and even some gems that don't with r.
 
 
 ## Usage
