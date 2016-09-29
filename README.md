@@ -4,7 +4,8 @@ Stock watcher.  HTML5 graphics, anayltics.
 
 ## Installation
 
-TODO: Describe the installation process
+Uses rails, redis, resque, and even some that don't with r.
+
 
 ## Usage
 Start Redis
