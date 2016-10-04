@@ -1,6 +1,6 @@
 # Quota
 
-Stock watcher.  HTML5 graphics, anayltics.
+A stock and portfolio watcher with price alerts via email.
 
 ## Installation
 
@@ -32,14 +32,4 @@ Sign up.  Sign in.  Add Portfolio.  Add stocks.  Watch 'em.  Trade 'em?
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
 
-## History
 
-TODO: Write history
-
-## Credits
-
-TODO: Write credits
-
-## License
-
-TODO: Write license
